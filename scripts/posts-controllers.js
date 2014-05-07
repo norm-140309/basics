@@ -1,13 +1,24 @@
 'use strict';
 //List Page
-angular.module('updaterApp').controller('PostsListController', ['$scope', '$http', '$location', function($scope, $http, $location) {
+angular.module('updaterApp').controller('PostsListController', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location) {
     $scope.api_url = 'http://basics.cinchcms.net/api/posts/';
-    $http.get($scope.api_url).success(function(data, status){
+    $http.post($scope.api_url, $routeParams).success(function(data, status, headers){
         $scope.posts = data;
     });
     $scope.new = function(){
         $location.path( '/posts/new' );
     };
+}]);
+
+
+//List Pagination Page
+angular.module('updaterApp').controller('PostsPaginationController', ['$scope', '$http', '$routeParams', '$location', '$sce', function($scope, $http, $routeParams, $location, $sce) {
+    $scope.api_url = 'http://basics.cinchcms.net/api/posts/pagination/';
+    $http.post($scope.api_url, $routeParams).success(function(data, status, headers){
+        if(status == "200"){
+            $scope.posts = data;
+        }
+    });
 }]);
 
 

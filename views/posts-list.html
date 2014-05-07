@@ -2,9 +2,9 @@
     <h2>Latest News</h2>
 
     <table class="table table-striped"> 
-        <tr ng-repeat="post in posts | orderBy:'p_date_displayed':false | limitTo:20"> <!--  | limitTo:20 -->
+        <tr ng-repeat="post in posts | orderBy:'p_date_displayed':false"> <!--  | limitTo:20 -->
             <td>
-                <a href="#/posts/{{post.p_slug}}">
+                <a href="#/posts/detail/{{post.p_slug}}">
                     <div class="date">
                         <span class="month">{{post.date_month}}</span>
                         <span class="day">{{post.date_day}}</span>
@@ -12,26 +12,19 @@
                 </a>
             </td>
             <td class="post-list-title">
-                <a href="#/posts/{{post.p_slug}}"><h2>{{post.p_name}}</h2></a>
+                <h2>{{post.p_name}}</h2>
                 <a href="#/posts/{{post.p_slug}}" class="pull-right">
                     <img ng-src="/data/posts/{{post.p_image_01}}" class="thumbnail th-preview" ng-show="post.p_image_01">
                 </a>
                 <div ng-bind-html="post.p_summary"></div>
-                <a href="#/posts/{{post.p_slug}}" class="btn btn-sm btn-success read-more" ng-click="" >
+                <a href="#/posts/detail/{{post.p_slug}}" class="btn btn-sm btn-success read-more" ng-click="" >
                     Read More
                 </a>
             </td>
         </tr>
         <tr>
-            <td colspan="2" class="text-center">
-                <ul class="pagination">
-                    <li class="disabled"><a href="#">&laquo;</a></li>
-                    <li class="active"><a href="">1</a></li>
-                    <li><a href="#/posts/2">2</a></li>
-                    <li><a href="#/posts/3">3</a></li>
-                    <li><a href="#/posts/2">&raquo;</a></li>
-                </ul>
-
+            <td colspan="2" class="text-center"> 
+                <ul class="pagination" ng-bind-html="posts[0].pagination"></ul>
             </td>
         </tr>
     </table>

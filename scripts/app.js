@@ -8,15 +8,19 @@ updaterApp.config(function($routeProvider) {
     $routeProvider
         .when('/', {
             templateUrl: 'views/posts-list.html',
-            controller: 'PostsListController'
+            controller: 'PostsPaginationController'
         })
         .when('/posts', {
             templateUrl: 'views/posts-list.html',
-            controller: 'PostsListController'
+            controller: 'PostsPaginationController'
         })
-        .when('/posts/:slug', {
+        .when('/posts/detail/:slug', {
             templateUrl: 'views/posts-detail.html',
             controller: 'PostsDetailController'
+        })
+        .when('/posts/:page', {
+            templateUrl: 'views/posts-list.html',
+            controller: 'PostsPaginationController'
         })
         .otherwise({
             redirectTo: '/'
