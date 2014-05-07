@@ -13,7 +13,7 @@
             </td>
             <td class="post-list-title">
                 <h2>{{post.p_name}}</h2>
-                <a href="#/posts/{{post.p_slug}}" class="pull-right">
+                <a href="#/posts/detail/{{post.p_slug}}" class="pull-right">
                     <img ng-src="/data/posts/{{post.p_image_01}}" class="thumbnail th-preview" ng-show="post.p_image_01">
                 </a>
                 <div ng-bind-html="post.p_summary"></div>

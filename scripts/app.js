@@ -22,6 +22,10 @@ updaterApp.config(function($routeProvider) {
             templateUrl: 'views/posts-list.html',
             controller: 'PostsPaginationController'
         })
+        .when('/posts/section/:section', {
+            templateUrl: 'views/posts-list.html',
+            controller: 'PostsSectionController'
+        })
         .otherwise({
             redirectTo: '/'
         });

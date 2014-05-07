@@ -22,6 +22,17 @@ angular.module('updaterApp').controller('PostsPaginationController', ['$scope', 
 }]);
 
 
+//List Section Page
+angular.module('updaterApp').controller('PostsSectionController', ['$scope', '$http', '$routeParams', '$location', '$sce', function($scope, $http, $routeParams, $location, $sce) {
+    $scope.api_url = 'http://basics.cinchcms.net/api/posts/section/';
+    $http.post($scope.api_url, $routeParams).success(function(data, status, headers){
+        if(status == "200"){
+            $scope.posts = data;
+        }
+    });
+}]);
+
+
 //Post Details
 angular.module('updaterApp').controller('PostsDetailController', ['$scope', '$http', '$routeParams', '$location', '$sce', function($scope, $http, $routeParams, $location, $sce) {
     $scope.floats = ['Left','Right'];
