@@ -1,0 +1,105 @@
+.loginForm{
+    width:75%;
+}
+.control-label span{
+    display: inline;
+    font-weight: normal;
+    margin-left:30px;
+}
+.table-container {
+    border:2px solid #DDD;
+    background-color: #EEE;
+    /* width:80%; */
+}
+/* .table-striped>tr:first-child { background-color: #DDD; } */
+.table-container h2 { margin:5px; }
+.table-container h3 { margin:6px 5px 5px 5px; }
+.table-container table{ margin-bottom:0; }
+.table-container input{ width: 100%; }
+/*.table-container td:first-child{ width: 150px !important; }*/
+h2 { font-size:24px;font-weight:bold; }
+h3 { font-size:16px;font-weight:bold; }
+.th-preview{ width:120px; }
+.angular-radio-check{ width:20px !important; }
+.block-table{ margin-bottom:25px !important;outline:solid 1px #CCC !important; }
+.block-table:last-child { margin-bottom:0; }
+.remove-block { margin:5px 10px 5px 5px; }
+.add-block { margin-top:-20px; }
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+.date{
+    float: left;
+    height: 52px;
+    width: 52px;
+    background: url(../img/date.png) no-repeat;
+    margin-right: 10px;
+    padding-top: 0px;
+    line-height: normal;
+}
+.date .month{
+    display: block;
+    text-align: center;
+    color: #FFF;
+    font-size: 11px;
+    padding-top: 4px;
+    text-transform: uppercase;
+}
+.date .day{
+    display: block;
+    text-align: center;
+    padding-top: 5px;
+    color: #222;
+    font-size: 18px;
+    font-weight: bold;
+}
+.post-list-title h2{ font-size:18px;}
+.post-list-title a{ color:#3a9942;text-decoration:none; }
+.post-list-title a:hover{ color:#108D00;text-decoration:underline; }
+.post-list-title .read-more, .post-list-title .read-more:hover{ color:#FFFFFF; }
+.post-list-title div{ margin:10px 0; }
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+}
+.video-container iframe,
+.video-container object,
+.video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.post-details h2{
+    font-weight: normal;
+    /* color: #3a9942; */
+    margin-bottom: 0;
+}
+.post-details-block{ margin:10px 0; }
+.post-details-block a { color:#3a9942; }
+.breadcrumb a { color:#3a9942; }
+.pagination li a, .pagination li a:hover { color:#3a9942; }
+.pagination > .active > a, .pagination > .active > a:hover { 
+    background-color: #3a9942;
+    border-color: #3a9942;
+    color: #FFFFFF;
+    cursor: default;
+    z-index: 2;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

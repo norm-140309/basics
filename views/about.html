@@ -1,0 +1,5 @@
+<h2>About Page</h2>
+<p ng-show="welcome.message">{{welcome.message}}</p>
+<ul ng-controller="AboutController">
+    <li ng-repeat="item in data">{{item.Hobby}} - {{item.Frequency}}</li>
+</ul>

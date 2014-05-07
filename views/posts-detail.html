@@ -1,0 +1,25 @@
+<div class="post-details">
+    <div class="row">  
+        <div class="span6">  
+            <ul class="breadcrumb">  
+                <li>  
+                    <a href="#/">Home</a> <span class="divider"></span>  
+                </li>  
+                <li>  
+                    <a href="#/posts/section/{{post.s_url}}">{{post.s_name}}</a> <span class="divider"></span>  
+                </li>  
+                <li class="active">{{post.p_name}}</li>  
+            </ul>  
+        </div>  
+    </div>  
+    <h2>{{post.p_name}}</h2>
+    <p>{{post.p_date_displayed}}</p>
+    <div class="post-details-block" ng-repeat="block in post.blocks">
+        <h3>{{block.pb_title}}</h3>
+        <div ng-bind-html="block.pb_copy"></div>
+        <!--- youtube player --->
+        <div my-youtube code="block.pb_youtube" ytid="block.pb_id" ng-show="block.pb_youtube"></div>
+        <!--- audio player --->
+        <div my-mp3 rawsrc="block.pb_mp3" myid="block.pb_id" ng-show="block.pb_mp3"></div><!---  --->
+    </div>
+</div>
