@@ -77,6 +77,31 @@ var UploadController_blocks = ['$scope', '$upload', function($scope, $upload) {
 }];
 
 
+angular.module('updaterApp').controller( UploadController_acctblocks, ['$scope', '$upload', function($scope, $upload) { 
+    //console.log($upload);
+}]);
+var UploadController_acctblocks = ['$scope', '$upload', function($scope, $upload) {  
+	var num = $scope.$index;
+    $scope.onFileSelect = function($files) {
+        for (var i = 0; i < $files.length; i++) {
+            var file = $files[i];
+            $scope.upload = $upload.upload({
+                url: 'http://basics.cinchcms.net/api/image_upload.php?site=basics&folder=accountability',  //UPDATE SITE & FOLDER
+                data: {myObj: $scope.myModelObj},
+                file: file, 
+            }).progress(function(evt) {
+                //console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+            }).success(function(data, status, headers, config) {
+                $scope.acct.blocks[num].ab_image_01 = data.filename;  //UPDATE VARIABLE NAME
+            });
+        }
+    };
+    $scope.delete = function(){
+        $scope.acct.blocks[num].ab_image_01 = "";  //UPDATE VARIABLE NAME
+    }
+}];
+
+
 //FILE UPLOADS
 angular.module('updaterApp').controller( FileUploadController_1, ['$scope', '$upload', function($scope, $upload) { //UPDATE NUMBER
     //console.log($upload);
@@ -123,5 +148,29 @@ var FileUploadController_2 = ['$scope', '$upload', function($scope, $upload) {  
     };
     $scope.delete = function(){
         $scope.post.p_file_01=""; //UPDATE VARIABLE NAME
+    }
+}];
+
+angular.module('updaterApp').controller( UploadController_3, ['$scope', '$upload', function($scope, $upload) { //UPDATE NUMBER
+    //console.log($upload);
+}]);
+var UploadController_3 = ['$scope', '$upload', function($scope, $upload) {  //UPDATE NUMBER
+    $scope.onFileSelect = function($files) {
+        for (var i = 0; i < $files.length; i++) {
+            var file = $files[i];
+            $scope.upload = $upload.upload({
+                url: 'http://basics.cinchcms.net/api/image_upload.php?site=basics&folder=accountability',  //UPDATE SITE & FOLDER
+                data: {myObj: $scope.myModelObj},
+                file: file, 
+            }).progress(function(evt) {
+                //console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+            }).success(function(data, status, headers, config) {
+                //console.log('time to show ' + data.filename + ' on the screen');
+                $scope.acct.a_image_01 = data.filename;  //UPDATE VARIABLE NAME
+            });
+        }
+    };
+    $scope.delete = function(){
+        $scope.acct.a_image_01=""; //UPDATE VARIABLE NAME
     }
 }];

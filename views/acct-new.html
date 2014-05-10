@@ -1,0 +1,88 @@
+<div class="table-container">
+    <h2>Accountability Post</h2>
+
+    <table class="table table-striped">
+        <tr> 
+            <td><label for="name">Title</label></td>
+            <td><input type="text" id="name" ng-model="acct.a_name"></td>
+        </tr>
+        <tr>
+            <td><label for="date_displayed">Date</label></td>
+            <td><input type="text" id="date_displayed" ng-model="acct.a_date_displayed" class="datepicker" ></td>
+        </tr>
+        <tr> 
+            <td><label for="summary">Summary</label></td> 
+            <td><textarea id="summary" ng-model="acct.a_summary" style="width:100%;height:120px;"></textarea></td>
+        </tr>
+        
+        <tr> 
+            <td>
+            	<label for="blocks">Post Blocks</label>
+            </td>
+            <td>
+            	<div ng-repeat="ab in acct.blocks" class="form-horizontal row-fluid form-inline">
+                	<div class="table-container block-table">
+    					<a href="" class="btn btn-xs btn-danger pull-right remove-block" ng-click="remove_block($index)" >
+                            <i class="glyphicon glyphicon-remove-circle"></i> Remove Block
+                        </a>
+                        <h3>Content Block {{$index+1}}</h3>                        
+                        <table class="table table-striped" >
+                            <tr>
+                                <td><label for="ab.ab_title{{ab.ab_id}}">Block Title</label></td>
+                                <td><input type="text" id="ab.ab_title{{ab.ab_id}}" ng-model="ab.ab_title" ></td>
+                            </tr>                            
+                            <tr>
+                                <td>
+                                	<label>Image Upload </label>
+                                	<!--- <pre>message:{{ab.cntrl[$index]}} | {{$index}}</pre> --->
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div ng-controller="UploadController_acctblocks">
+                                            <div class="col-md-6">
+                                                <input type="text" ng-model="ab.ab_image_01" disabled class="pull-left" style="margin-right:20px;" >
+                                            </div>
+                                            <div class="col-md-5">
+                                                <input type="file" ng-file-select="onFileSelect($files)" class="pull-left" ng-hide="ab.ab_image_01" accept="image/*" capture="camera" >
+                                                <div ng-show="ab.ab_image_01" style="padding-left:8px;" >
+                                                    <a href="" class="btn btn-xs btn-danger" ng-click="delete()" >
+                                                        <i class="glyphicon glyphicon-remove-circle"></i> Delete
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <img ng-src="/data/accountability/{{ab.ab_image_01}}" class="pull-right thumbnail th-preview" ng-show="ab.ab_image_01">
+                                            </div>
+                                        </div>
+                                    </div>
+                                     
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="ab.ab_copy{{ab.ab_id}}">Block Description</label></td>
+                                <td><textarea type="text" id="ab.ab_copy{{ab.ab_id}}" ng-model="ab.ab_copy"  style="width:100%;height:200px;" ></textarea></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <br>
+                <a href="" class="btn btn-sm btn-primary add-block" ng-click="add_block()" >
+                    <i class="glyphicon glyphicon-plus-sign"></i> Add Block
+                </a>
+                <!--- <pre>post: {{post}}</pre> --->
+            </td>     
+        </tr>     
+        <!--
+        <tr> 
+            <td colspan="2">{{acct}}</td>
+        </tr>
+        -->
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+                <button class="btn btn-success btn-sm" ng-click="store_new()"><i class="glyphicon glyphicon-ok-circle"></i> Save</button>
+                <button class="btn btn-default btn-sm" ng-click="cancel()"><i class="glyphicon glyphicon-ban-circle" ></i> Cancel</button>
+            </td>
+        </tr>
+    </table>
+</div>

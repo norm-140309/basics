@@ -26,6 +26,18 @@ updaterApp.config(function($routeProvider) {
             templateUrl: 'views/posts-list.html',
             controller: 'PostsSectionController'
         })
+        .when('/acct/new', {
+            templateUrl: 'views/acct-new.html',
+            controller: 'AcctNewController'
+        })
+        .when('/acct/detail/:slug', {
+            templateUrl: 'views/acct-detail.html',
+            controller: 'AcctDetailController'
+        })
+        .when('/acct', {
+            templateUrl: 'views/acct-list.html',
+            controller: 'AcctPaginationController'
+        })
         .otherwise({
             redirectTo: '/'
         });

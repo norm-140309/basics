@@ -80,6 +80,8 @@ h3 { font-size:16px;font-weight:bold; }
 }
 .post-details-block{ margin:10px 0; }
 .post-details-block a { color:#3a9942; }
+.post-details .pull-left{ margin-right: 10px; }
+.post-details .pull-right{ margin-left: 10px; }
 .breadcrumb a { color:#3a9942; }
 .pagination li a, .pagination li a:hover { color:#3a9942; }
 .pagination > .active > a, .pagination > .active > a:hover { 
@@ -89,7 +91,35 @@ h3 { font-size:16px;font-weight:bold; }
     cursor: default;
     z-index: 2;
 }
-
+.modal-popup{ width:100%; }
+.ng-modal-close {
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 120%;
+  display: inline-block;
+  font-weight: bold;
+  font-family: 'arial', 'sans-serif';
+}
+@media only screen and (max-width: 480px) {
+    .list-summary{
+        width:100%;
+        clear:both;
+    }
+    .post-list-title .pull-right{
+    	float:none !important;
+        width:100%;
+        text-align:center;
+    }
+    .post-list-title .thumbnail{
+    	margin:0 auto;
+    }
+    .post-list-title .th-preview {
+        width: 100%;
+    }
+}
 
 
 

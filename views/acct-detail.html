@@ -1,0 +1,26 @@
+<div class="post-details">
+    <div class="row">  
+        <div class="span6">  
+            <ul class="breadcrumb">  
+                <li>  
+                    <a href="#/">Home</a> <span class="divider"></span>  
+                </li>  
+                <li>  
+                    <a href="#/acct">Accountability</a> <span class="divider"></span>  
+                </li>  
+                <li class="active">{{acct.a_name}}</li>  
+            </ul>  
+        </div>  
+    </div>  
+    <h2>{{acct.a_name}}</h2>
+    <p>{{acct.a_date_displayed}}</p>
+    <div class="post-details-block" ng-repeat="block in acct.blocks">
+        <h3>{{block.ab_title}}</h3>
+        <a href="/data/accountability/{{block.ab_image_01}}" target="_blank"><img ng-src="/data/accountability/{{block.thumb_image}}" class="thumbnail th-preview pull-right " ng-show="block.ab_image_01" ></a>
+        <div ng-bind-html="block.ab_copy"></div>
+        <!--- youtube player --->
+        <div my-youtube code="block.ab_youtube" ytid="block.ab_id" ng-show="block.ab_youtube"></div>
+        <!--- audio player --->
+        <div my-mp3 rawsrc="block.ab_mp3" myid="block.ab_id" ng-show="block.ab_mp3"></div><!---  --->
+    </div>
+</div>
