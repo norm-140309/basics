@@ -30,9 +30,17 @@ updaterApp.config(function($routeProvider) {
             templateUrl: 'views/acct-new.html',
             controller: 'AcctNewController'
         })
+        .when('/acct/edit/:index', {
+            templateUrl: 'views/acct-edit.html',
+            controller: 'AcctEditController'
+        })
         .when('/acct/detail/:slug', {
             templateUrl: 'views/acct-detail.html',
             controller: 'AcctDetailController'
+        })
+        .when('/acct/delete/:index', {
+            templateUrl: 'views/acct-delete.html',
+            controller: 'AcctDeleteController'
         })
         .when('/acct', {
             templateUrl: 'views/acct-list.html',

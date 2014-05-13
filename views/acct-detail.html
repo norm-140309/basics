@@ -12,15 +12,29 @@
             </ul>  
         </div>  
     </div>  
-    <h2>{{acct.a_name}}</h2>
-    <p>{{acct.a_date_displayed}}</p>
-    <div class="post-details-block" ng-repeat="block in acct.blocks">
-        <h3>{{block.ab_title}}</h3>
-        <a href="/data/accountability/{{block.ab_image_01}}" target="_blank"><img ng-src="/data/accountability/{{block.thumb_image}}" class="thumbnail th-preview pull-right " ng-show="block.ab_image_01" ></a>
-        <div ng-bind-html="block.ab_copy"></div>
-        <!--- youtube player --->
-        <div my-youtube code="block.ab_youtube" ytid="block.ab_id" ng-show="block.ab_youtube"></div>
-        <!--- audio player --->
-        <div my-mp3 rawsrc="block.ab_mp3" myid="block.ab_id" ng-show="block.ab_mp3"></div><!---  --->
+    <div class="table-container">
+        <div class="detail-edit">
+            <a href="#/acct/edit/{{acct.a_id}}" class="btn btn-xs btn-primary acct-edit" >
+            <i class="glyphicon glyphicon-edit"></i> Edit</a>
+        </div>
+        <h2>{{acct.a_name}}</h2>
+        <p class="title-date">{{acct.a_date_displayed}}</p>
+        <p ng-show="acct.a_summary">{{acct.a_summary}}</p> 
+        <table class="table table-striped">
+            <tr ng-repeat="block in acct.blocks">
+                <td>
+                    <a href="/data/accountability/{{block.ab_image_01}}" target="_blank"><img ng-src="/data/accountability/{{block.thumb_image}}" class="thumbnail th-preview pull-right " ng-show="block.ab_image_01" ></a>
+                </td>
+                <td>
+                    <h3 class="subtitle">{{block.ab_title}}</h3>
+                    <div ng-bind-html="block.ab_copy"></div>
+                    <!--- youtube player --->
+                    <div my-youtube code="block.ab_youtube" ytid="block.ab_id" ng-show="block.ab_youtube"></div>
+                    <!--- audio player --->
+                    <div my-mp3 rawsrc="block.ab_mp3" myid="block.ab_id" ng-show="block.ab_mp3"></div>
+                </td>
+            </tr>
+        </table>
     </div>
+    
 </div>

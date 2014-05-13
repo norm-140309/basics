@@ -46,8 +46,8 @@ angular.module('updaterApp').controller('AcctNewController', ['$scope', '$http',
     }
     $scope.add_block = function(){
     	$scope.acct.blocks.push({
-        	ab_id: 0,
-        	ab_title: '',
+            ab_id: 0,
+            ab_title: '',
             ab_image_01: '',
             ab_file_01: '',
             ab_file_01_display_name: '',
@@ -70,4 +70,70 @@ angular.module('updaterApp').controller('AcctDetailController', ['$scope', '$htt
             $scope.acct = data[0];
         }
     });  
+}]);
+
+
+//Accountability Edit Post
+angular.module('updaterApp').controller('AcctEditController', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location) {
+    $scope.api_url = 'http://basics.cinchcms.net/api/accountability/lookup/';
+    $http.post($scope.api_url, $routeParams).success(function(data, status, headers){
+        if(status == "200"){
+            $scope.acct = data[0];
+            $(".datepicker").datepicker({
+            	onClose: function() { 
+                    var my_model = $(this).attr('ng-model');
+                    my_model = my_model.split(".");my_model = my_model[1];
+                    //console.log( 'set model: '+my_model+' to value: '+$(this).val() ); 
+                    $scope.acct[my_model] = $(this).val();
+                }
+            });
+        }
+    });
+    $scope.save_url = 'http://basics.cinchcms.net/api/accountability/save/';
+    $scope.store = function(data){
+       $http.post($scope.save_url, data).success(function(data, status, headers){
+            if(status == "200"){
+                $location.path( '/acct' );
+            }
+        });
+    };
+    $scope.cancel = function(){
+        $location.path( '/acct' );
+    };
+    $scope.add_block = function(){
+    	$scope.acct.blocks.push({
+            ab_id: 0,
+            ab_title: '',
+            ab_image_01: '',
+            ab_file_01: '',
+            ab_file_01_display_name: '',
+            ab_copy: '',
+            ab_mp3: '',
+            ab_members_fk: 0
+        });
+    };
+    $scope.remove_block = function(index){
+    	$scope.acct.blocks.splice(index, 1);
+    };
+}]);
+
+//Accountability Post Page
+angular.module('updaterApp').controller('AcctDeleteController', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location){
+    $scope.api_url = 'http://basics.cinchcms.net/api/accountability/lookup/';
+    $http.post($scope.api_url, $routeParams).success(function(data, status, headers){
+        if(status == "200"){
+            $scope.acct = data[0];
+        }
+    });
+    $scope.del_url = 'http://basics.cinchcms.net/api/accountability/delete/';
+    $scope.delete = function(data){
+        $http.post($scope.del_url, data).success(function(data, status, headers){
+            if(status == "200"){
+                $location.path( '/acct' );
+            }
+        });
+    };
+    $scope.cancel = function(){
+        $location.path( '/acct' );
+    };
 }]);

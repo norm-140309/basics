@@ -1,5 +1,5 @@
 <div class="table-container">
-    <h2>Accountability - New Post</h2>
+    <h2>Accountability - Edit Post</h2>
 
     <table class="table table-striped">
         <tr> 
@@ -60,7 +60,7 @@
                             </tr>
                             <tr>
                                 <td><label for="ab.ab_copy{{ab.ab_id}}">Block Description</label></td>
-                                <td><textarea type="text" id="ab.ab_copy{{ab.ab_id}}" ng-model="ab.ab_copy"  style="width:100%;height:200px;" ></textarea></td>
+                                <td><textarea type="text" id="ab.ab_copy{{ab.ab_id}}" ng-model="ab.ab_copy"  style="width:100%;height:100px;" ></textarea></td>
                             </tr>
                         </table>
                     </div>
@@ -80,9 +80,9 @@
         <tr>
             <td>&nbsp;</td>
             <td>
-                <button class="btn btn-success btn-sm" ng-click="store_new()"><i class="glyphicon glyphicon-ok-circle"></i> Save</button>
+                <button class="btn btn-success btn-sm" ng-click="store(acct)"><i class="glyphicon glyphicon-ok-circle"></i> Save</button>
                 <button class="btn btn-default btn-sm" ng-click="cancel()"><i class="glyphicon glyphicon-ban-circle" ></i> Cancel</button>
             </td>
-        </tr>
+        </tr> 
     </table>
 </div>

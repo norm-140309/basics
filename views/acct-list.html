@@ -1,23 +1,25 @@
 <div  class="table-container">
-    <h2>Latest Accountability Entries</h2>
+    <h2>Latest Accountability Logs</h2>
 
     <table class="table table-striped"> 
         <tr ng-repeat="acct in accts | orderBy:'a_date_displayed':false"> <!--  | limitTo:20 -->
-            <td>
+            <td class="post-list-title">
                 <a href="#/acct/detail/{{act.a_slug}}">
                     <div class="date">
                         <span class="month">{{acct.date_month}}</span>
                         <span class="day">{{acct.date_day}}</span>
                     </div>
                 </a>
+                
             </td>
             <td class="post-list-title">
+                <div class="acct-list-edit">
+                    <a href="#/acct/delete/{{acct.a_id}}" class="btn btn-xs btn-danger">
+                    <i class="glyphicon glyphicon-remove-circle"></i> Delete</a> 
+                    <a href="#/acct/edit/{{acct.a_id}}" class="btn btn-xs btn-primary">
+                    <i class="glyphicon glyphicon-edit"></i> Edit</a>
+                </div>
                 <h2>{{acct.a_name}}</h2>
-                <!--
-                <a href="#/acct/detail/{{acct.a_slug}}" class="pull-right">
-                    <img ng-src="/data/accountability/{{acct.a_image_01}}" class="thumbnail th-preview" ng-show="acct.a_image_01">
-                </a>
-                -->
                 <div ng-bind-html="acct.a_summary" class="list-summary"></div>
                 <a href="#/acct/detail/{{acct.a_slug}}" class="btn btn-sm btn-success read-more" ng-click="" >
                     Read More

@@ -16,6 +16,8 @@
 .table-container h3 { margin:6px 5px 5px 5px; }
 .table-container table{ margin-bottom:0; }
 .table-container input{ width: 100%; }
+.table-container .title-date { margin:0 0 5px 7px; }
+.table-container .subtitle { margin:0px 5px 5px 0px; }
 /*.table-container td:first-child{ width: 150px !important; }*/
 h2 { font-size:24px;font-weight:bold; }
 h3 { font-size:16px;font-weight:bold; }
@@ -33,7 +35,7 @@ h3 { font-size:16px;font-weight:bold; }
     height: 52px;
     width: 52px;
     background: url(../img/date.png) no-repeat;
-    margin-right: 10px;
+    margin: 8px 0;
     padding-top: 0px;
     line-height: normal;
 }
@@ -51,13 +53,12 @@ h3 { font-size:16px;font-weight:bold; }
     padding-top: 5px;
     color: #222;
     font-size: 18px;
-    font-weight: bold;
+    font-weight: bold; 
 }
 .post-list-title h2{ font-size:18px;}
 .post-list-title a{ color:#3a9942;text-decoration:none; }
 .post-list-title a:hover{ color:#108D00;text-decoration:underline; }
 .post-list-title .read-more, .post-list-title .read-more:hover{ color:#FFFFFF; }
-.post-list-title div{ margin:10px 0; }
 .video-container {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */
@@ -120,9 +121,17 @@ h3 { font-size:16px;font-weight:bold; }
         width: 100%;
     }
 }
-
-
-
+.acct-edit{ margin-left:3px; }
+.acct-list-edit{ 
+    width:130px;
+    display:inline-block;
+    float:right; 
+}
+.acct-list-edit a{ color:#FFF; }
+.acct-list-edit a:hover{ color:#FFF;text-decoration:none; }
+.post-list-title h2{ margin:0 0 8px 0; }
+.post-list-title .date{ margin:0; }
+.detail-edit{ margin:8px;float:right; }
 
 
 
