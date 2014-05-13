@@ -1,7 +1,15 @@
 'use strict';
 
+updaterApp.controller('NavController', function ($scope, $location) {
+    $scope.isCollapsed = true;
+    $scope.$on('$routeChangeSuccess', function () {
+        $scope.isCollapsed = true;
+    });
+});
+
 //List Pagination Page
-angular.module('updaterApp').controller('AcctPaginationController', ['$scope', '$http', '$routeParams', '$location', '$sce', function($scope, $http, $routeParams, $location, $sce) {
+angular.module('updaterApp').controller('AcctPaginationController', ['$scope', '$http', '$routeParams', '$location', '$sce', '$window', function($scope, $http, $routeParams, $location, $sce, $window) {
+	if(typeof $window.sessionStorage.loggedin == 'undefined'){	$location.path( '/acct/login' ); }
     $scope.api_url = 'http://basics.cinchcms.net/api/accountability/pagination/';
     $http.post($scope.api_url, $routeParams).success(function(data, status, headers){
         if(status == "200"){
@@ -11,7 +19,8 @@ angular.module('updaterApp').controller('AcctPaginationController', ['$scope', '
 }]);
 
 //New Accountability Post
-angular.module('updaterApp').controller('AcctNewController', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location) {
+angular.module('updaterApp').controller('AcctNewController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window) {
+	if(typeof $window.sessionStorage.loggedin == 'undefined'){	$location.path( '/acct/login' ); }
     $scope.load_new = function(){
         var data = { 
                         a_name: '',
@@ -62,7 +71,8 @@ angular.module('updaterApp').controller('AcctNewController', ['$scope', '$http',
 }]);
 
 //Accountability Post Details
-angular.module('updaterApp').controller('AcctDetailController', ['$scope', '$http', '$routeParams', '$location', '$sce', function($scope, $http, $routeParams, $location, $sce) {
+angular.module('updaterApp').controller('AcctDetailController', ['$scope', '$http', '$routeParams', '$location', '$sce', '$window', function($scope, $http, $routeParams, $location, $sce, $window) {
+	if(typeof $window.sessionStorage.loggedin == 'undefined'){	$location.path( '/acct/login' ); }
     $scope.floats = ['Left','Right'];
     $scope.api_url = 'http://basics.cinchcms.net/api/accountability/details/';
     $http.post($scope.api_url, $routeParams).success(function(data, status, headers){
@@ -74,7 +84,8 @@ angular.module('updaterApp').controller('AcctDetailController', ['$scope', '$htt
 
 
 //Accountability Edit Post
-angular.module('updaterApp').controller('AcctEditController', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location) {
+angular.module('updaterApp').controller('AcctEditController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window) {
+	if(typeof $window.sessionStorage.loggedin == 'undefined'){	$location.path( '/acct/login' ); }
     $scope.api_url = 'http://basics.cinchcms.net/api/accountability/lookup/';
     $http.post($scope.api_url, $routeParams).success(function(data, status, headers){
         if(status == "200"){
@@ -118,7 +129,8 @@ angular.module('updaterApp').controller('AcctEditController', ['$scope', '$http'
 }]);
 
 //Accountability Post Page
-angular.module('updaterApp').controller('AcctDeleteController', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location){
+angular.module('updaterApp').controller('AcctDeleteController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window){
+	if(typeof $window.sessionStorage.loggedin == 'undefined'){	$location.path( '/acct/login' ); }
     $scope.api_url = 'http://basics.cinchcms.net/api/accountability/lookup/';
     $http.post($scope.api_url, $routeParams).success(function(data, status, headers){
         if(status == "200"){
@@ -137,3 +149,51 @@ angular.module('updaterApp').controller('AcctDeleteController', ['$scope', '$htt
         $location.path( '/acct' );
     };
 }]);
+
+//Accountability Login Page
+angular.module('updaterApp').controller('AcctLoginController', ['$scope', '$http', '$routeParams', '$location', '$window',  function($scope, $http, $routeParams, $location, $window){
+    //console.log('uuid: '+$window.sessionStorage.token);
+    $scope.api_url = 'http://basics.cinchcms.net/api/accountability/login/';
+    $scope.login = function(data){
+        $http.post($scope.api_url, data).success(function(data, status, headers){
+            /* console.log('in module login result: '+data); */
+
+            if(data.length == 8){
+            	$scope.wrongCredentials = false;
+                $window.sessionStorage.token = data;
+                $window.sessionStorage.loggedin = true;
+                $('#login-alert').hide();
+                $('#login-link').hide();
+                $('#logout-link').show();
+                $location.path( '/acct' );
+            }else{
+            	$scope.wrongCredentials = true;
+                delete $window.sessionStorage.token;
+                delete $window.sessionStorage.loggedin;
+                if(typeof $scope.acct !== 'undefined'){
+                    $scope.acct.password = '';
+                }
+                $('#login-alert').show();
+                $('#logout-link').hide();
+                $('#login-link').show();
+            }
+            
+        });
+    };
+}]);
+
+//Accountability Logout Page
+angular.module('updaterApp').controller('AcctLogoutController', ['$scope', '$http', '$routeParams', '$location', '$window',  function($scope, $http, $routeParams, $location, $window){
+    //console.log('uuid: '+$window.sessionStorage.token);
+    $scope.api_url = 'http://basics.cinchcms.net/api/accountability/login/';
+    var data = {"email":"", "password":""};
+    $http.post($scope.api_url, $routeParams).success(function(data, status, headers){
+        $scope.wrongCredentials = true;
+        delete $window.sessionStorage.token;
+        delete $window.sessionStorage.loggedin;
+        $('#logout-link').hide();
+        $('#login-link').show();
+        $location.path( '/acct/login' );
+    });
+}]);
+                    

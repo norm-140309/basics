@@ -133,6 +133,10 @@ h3 { font-size:16px;font-weight:bold; }
 .post-list-title .date{ margin:0; }
 .detail-edit{ margin:8px;float:right; }
 
+.expand-img{ width:100%; }
+.photobox{ width:95%; }
+.login-alert{ padding:12px; }
+
 
 
 

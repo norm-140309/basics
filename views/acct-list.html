@@ -3,7 +3,7 @@
 
     <table class="table table-striped"> 
         <tr ng-repeat="acct in accts | orderBy:'a_date_displayed':false"> <!--  | limitTo:20 -->
-            <td class="post-list-title">
+            <td class="post-list-title" width="1%">
                 <a href="#/acct/detail/{{act.a_slug}}">
                     <div class="date">
                         <span class="month">{{acct.date_month}}</span>
@@ -12,12 +12,12 @@
                 </a>
                 
             </td>
-            <td class="post-list-title">
+            <td class="post-list-title" width="99%">
                 <div class="acct-list-edit">
-                    <a href="#/acct/delete/{{acct.a_id}}" class="btn btn-xs btn-danger">
-                    <i class="glyphicon glyphicon-remove-circle"></i> Delete</a> 
-                    <a href="#/acct/edit/{{acct.a_id}}" class="btn btn-xs btn-primary">
+                    <a href="#/acct/edit/{{acct.a_slug}}" class="btn btn-xs btn-primary">
                     <i class="glyphicon glyphicon-edit"></i> Edit</a>
+                    <a href="#/acct/delete/{{acct.a_slug}}" class="btn btn-xs btn-danger">
+                    <i class="glyphicon glyphicon-remove-circle"></i> Delete</a> 
                 </div>
                 <h2>{{acct.a_name}}</h2>
                 <div ng-bind-html="acct.a_summary" class="list-summary"></div>

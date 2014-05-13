@@ -46,6 +46,14 @@ updaterApp.config(function($routeProvider) {
             templateUrl: 'views/acct-list.html',
             controller: 'AcctPaginationController'
         })
+        .when('/acct/login', {
+            templateUrl: 'views/acct-login.html',
+            controller: 'AcctLoginController'
+        })
+        .when('/acct/logout', {
+            templateUrl: 'views/acct-login.html',
+            controller: 'AcctLogoutController'
+        })
         .otherwise({
             redirectTo: '/'
         });

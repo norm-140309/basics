@@ -14,18 +14,20 @@
     </div>  
     <div class="table-container">
         <div class="detail-edit">
-            <a href="#/acct/edit/{{acct.a_id}}" class="btn btn-xs btn-primary acct-edit" >
+            <a href="#/acct/edit/{{acct.a_slug}}" class="btn btn-xs btn-primary acct-edit" >
             <i class="glyphicon glyphicon-edit"></i> Edit</a>
         </div>
         <h2>{{acct.a_name}}</h2>
         <p class="title-date">{{acct.a_date_displayed}}</p>
+        <!--
         <p ng-show="acct.a_summary">{{acct.a_summary}}</p> 
+        -->
         <table class="table table-striped">
             <tr ng-repeat="block in acct.blocks">
-                <td>
-                    <a href="/data/accountability/{{block.ab_image_01}}" target="_blank"><img ng-src="/data/accountability/{{block.thumb_image}}" class="thumbnail th-preview pull-right " ng-show="block.ab_image_01" ></a>
+                <td width="1%" class="popup" >
+                    <a href="/data/accountability/{{block.ab_image_01}}" target="_blank"><img ng-src="/data/accountability/{{block.thumb_image}}" class="thumbnail th-preview pull-right" ng-show="block.ab_image_01" onclick="return false;" ></a>
                 </td>
-                <td>
+                <td width="99%">
                     <h3 class="subtitle">{{block.ab_title}}</h3>
                     <div ng-bind-html="block.ab_copy"></div>
                     <!--- youtube player --->

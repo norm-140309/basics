@@ -1,0 +1,26 @@
+<div class="table-container">
+    <h2>Accountability Login</h2>
+
+    <table class="table table-striped">
+        <tr>
+            <td colspan="2"><span style="float:right;">&nbsp;</span>
+            	<p class="bg-danger login-alert" id="login-alert" style="display:none;">Your User ID and Password were entered incorrectly.</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="10%"><label for="email">Email</label></td>
+            <td width="90%"><input type="text" id="email" ng-model="acct.email" max-length="50" ></td>
+        </tr> 
+        <tr>
+            <td width="10%"><label for="email">Password</label></td>
+            <td width="90%"><input type="password" id="password" ng-model="acct.password" max-length="20" ></td>
+        </tr> 
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+                <button class="btn btn-primary btn-md" ng-click="login(acct)"><i class="glyphicon glyphicon-log-in" ></i> &nbsp; Login</button>
+                
+            </td>
+        </tr>
+    </table>
+</div>
