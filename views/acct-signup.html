@@ -1,0 +1,50 @@
+<div class="table-container">
+    <h2>Accountability Signup</h2>
+    <form name="signup_form">
+        <table class="table table-striped">
+            <tr>
+                <td width="10%"><label for="firstname">First Name</label></td>
+                <td width="90%">
+                    <input type="text" name="firstname" id="firstname" ng-model="acct.firstname" max-length="50" required >
+                    <small ng-show="signup_form.firstname.$error.required">*Required Field</small>
+                </td>
+            </tr> 
+            <tr>
+                <td width="10%"><label for="lastname">Last Name</label></td>
+                <td width="90%">
+                    <input type="text" name="lastname" id="lastname" ng-model="acct.lastname" max-length="50" required >
+                    <small ng-show="signup_form.lastname.$error.required">*Required Field</small>
+                </td>
+            </tr> 
+            <tr>
+                <td width="10%"><label for="username">Username</label></td>
+                <td width="90%">
+                    <input type="text" name="username" id="username" ng-model="acct.username" max-length="50" required >
+                    <small ng-show="signup_form.username.$error.required">*Required Field</small>
+                </td>
+            </tr> 
+            <tr>
+                <td width="10%"><label for="email">Email</label></td>
+                <td width="90%">
+                    <input type="email" name="email" id="email" ng-model="acct.email" max-length="50" required >
+                    <small ng-show="signup_form.email.$error.required">*Required Field</small>
+                    <small ng-show="signup_form.email.$error.email">Invalid Email Address</small>
+                </td>
+            </tr> 
+            <tr>
+                <td width="10%"><label for="email">Password</label></td>
+                <td width="90%">
+                    <input type="password" name="password" id="password" ng-model="acct.password" max-length="20" required ng-minlength="4" >
+                    <small ng-show="signup_form.password.$error.required">*Required Field</small>                     <small ng-show="signup_form.password.$error.minlength">*4 Chars Minimum Length</small>
+                </td>
+            </tr> 
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <button class="btn btn-primary btn-md" ng-click="signup(acct)" ng-disabled="signup_form.$invalid"><i class="glyphicon glyphicon-log-in" ></i> &nbsp; Signup</button>
+
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

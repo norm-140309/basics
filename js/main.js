@@ -4,3 +4,4 @@ $(document).on("click", ".popup", function(e) {
           message: img_src
     }).find("div.modal-dialog").addClass("photobox");
 });
+

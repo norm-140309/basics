@@ -9,7 +9,12 @@ updaterApp.controller('NavController', function ($scope, $location) {
 
 //List Pagination Page
 angular.module('updaterApp').controller('AcctPaginationController', ['$scope', '$http', '$routeParams', '$location', '$sce', '$window', function($scope, $http, $routeParams, $location, $sce, $window) {
-	if(typeof $window.sessionStorage.loggedin == 'undefined'){	$location.path( '/acct/login' ); }
+	if(typeof $window.sessionStorage.loggedin == 'undefined'){	
+    	$location.path( '/acct/login' ); 
+    }else{
+    	$('#login-link').hide();
+        $('#logout-link').show();
+    }
     $scope.api_url = 'http://basics.cinchcms.net/api/accountability/pagination/';
     $http.post($scope.api_url, $routeParams).success(function(data, status, headers){
         if(status == "200"){
@@ -20,10 +25,16 @@ angular.module('updaterApp').controller('AcctPaginationController', ['$scope', '
 
 //New Accountability Post
 angular.module('updaterApp').controller('AcctNewController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window) {
-	if(typeof $window.sessionStorage.loggedin == 'undefined'){	$location.path( '/acct/login' ); }
+	if(typeof $window.sessionStorage.loggedin == 'undefined'){	
+    	$location.path( '/acct/login' ); 
+    }else{
+    	$('#login-link').hide();
+        $('#logout-link').show();
+    }
     $scope.load_new = function(){
         var data = { 
                         a_name: '',
+                        username: $window.sessionStorage.username,
                         a_date_displayed: '',
                         a_summary: '',
                         blocks: []
@@ -43,6 +54,7 @@ angular.module('updaterApp').controller('AcctNewController', ['$scope', '$http',
     $scope.store_new = function(){
         var data = { 
                         a_name: $scope.acct.a_name,
+                        username: $scope.acct.username,
                         a_date_displayed: $scope.acct.a_date_displayed,
                         a_summary: $scope.acct.a_summary,
                         blocks: $scope.acct.blocks
@@ -68,11 +80,19 @@ angular.module('updaterApp').controller('AcctNewController', ['$scope', '$http',
     $scope.remove_block = function(index){
     	$scope.acct.blocks.splice(index, 1);
     };
+    $scope.cancel = function(){
+        $location.path( '/acct' );
+    };
 }]);
 
 //Accountability Post Details
 angular.module('updaterApp').controller('AcctDetailController', ['$scope', '$http', '$routeParams', '$location', '$sce', '$window', function($scope, $http, $routeParams, $location, $sce, $window) {
-	if(typeof $window.sessionStorage.loggedin == 'undefined'){	$location.path( '/acct/login' ); }
+	if(typeof $window.sessionStorage.loggedin == 'undefined'){	
+    	$location.path( '/acct/login' ); 
+    }else{
+    	$('#login-link').hide();
+        $('#logout-link').show();
+    }
     $scope.floats = ['Left','Right'];
     $scope.api_url = 'http://basics.cinchcms.net/api/accountability/details/';
     $http.post($scope.api_url, $routeParams).success(function(data, status, headers){
@@ -85,7 +105,12 @@ angular.module('updaterApp').controller('AcctDetailController', ['$scope', '$htt
 
 //Accountability Edit Post
 angular.module('updaterApp').controller('AcctEditController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window) {
-	if(typeof $window.sessionStorage.loggedin == 'undefined'){	$location.path( '/acct/login' ); }
+	if(typeof $window.sessionStorage.loggedin == 'undefined'){	
+    	$location.path( '/acct/login' ); 
+    }else{
+    	$('#login-link').hide();
+        $('#logout-link').show();
+    }
     $scope.api_url = 'http://basics.cinchcms.net/api/accountability/lookup/';
     $http.post($scope.api_url, $routeParams).success(function(data, status, headers){
         if(status == "200"){
@@ -130,7 +155,12 @@ angular.module('updaterApp').controller('AcctEditController', ['$scope', '$http'
 
 //Accountability Post Page
 angular.module('updaterApp').controller('AcctDeleteController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window){
-	if(typeof $window.sessionStorage.loggedin == 'undefined'){	$location.path( '/acct/login' ); }
+	if(typeof $window.sessionStorage.loggedin == 'undefined'){	
+    	$location.path( '/acct/login' ); 
+    }else{
+    	$('#login-link').hide();
+        $('#logout-link').show();
+    }
     $scope.api_url = 'http://basics.cinchcms.net/api/accountability/lookup/';
     $http.post($scope.api_url, $routeParams).success(function(data, status, headers){
         if(status == "200"){
@@ -158,9 +188,10 @@ angular.module('updaterApp').controller('AcctLoginController', ['$scope', '$http
         $http.post($scope.api_url, data).success(function(data, status, headers){
             /* console.log('in module login result: '+data); */
 
-            if(data.length == 8){
+            if(data != 'error'){
             	$scope.wrongCredentials = false;
-                $window.sessionStorage.token = data;
+                $window.sessionStorage.token = data['m_uuid'];
+                $window.sessionStorage.username = data['m_username'];
                 $window.sessionStorage.loggedin = true;
                 $('#login-alert').hide();
                 $('#login-link').hide();
@@ -169,6 +200,7 @@ angular.module('updaterApp').controller('AcctLoginController', ['$scope', '$http
             }else{
             	$scope.wrongCredentials = true;
                 delete $window.sessionStorage.token;
+                delete $window.sessionStorage.username;
                 delete $window.sessionStorage.loggedin;
                 if(typeof $scope.acct !== 'undefined'){
                     $scope.acct.password = '';
@@ -190,10 +222,32 @@ angular.module('updaterApp').controller('AcctLogoutController', ['$scope', '$htt
     $http.post($scope.api_url, $routeParams).success(function(data, status, headers){
         $scope.wrongCredentials = true;
         delete $window.sessionStorage.token;
+        delete $window.sessionStorage.username;
         delete $window.sessionStorage.loggedin;
         $('#logout-link').hide();
         $('#login-link').show();
         $location.path( '/acct/login' );
     });
+}]);
+
+//Accountability Login Page
+angular.module('updaterApp').controller('AcctSignupController', ['$scope', '$http', '$routeParams', '$location', '$window',  function($scope, $http, $routeParams, $location, $window){
+    //console.log('uuid: '+$window.sessionStorage.token);
+    var data = { 
+                  firstname: '',
+                  lastname: '',
+                  username: '',
+                  email: '',
+                  password: '',
+                  signup_errors: ''
+              };
+    $scope.acct = data;
+    $scope.api_url = 'http://basics.cinchcms.net/api/accountability/signup/';
+    $scope.signup = function(data){
+        $http.post($scope.api_url, data).success(function(data, status, headers){
+            /* console.log('in module login result: '+data); */
+			
+        });
+    };
 }]);
                     

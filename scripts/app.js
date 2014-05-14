@@ -54,6 +54,10 @@ updaterApp.config(function($routeProvider) {
             templateUrl: 'views/acct-login.html',
             controller: 'AcctLogoutController'
         })
+        .when('/acct/signup', {
+            templateUrl: 'views/acct-signup.html',
+            controller: 'AcctSignupController'
+        })
         .otherwise({
             redirectTo: '/'
         });

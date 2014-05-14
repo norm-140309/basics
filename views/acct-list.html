@@ -1,10 +1,11 @@
 <div  class="table-container">
     <h2>Latest Accountability Logs</h2>
-
+    <a href="#/acct/new" class="btn btn-sm btn-primary center-block new-btn">
+    <i class="glyphicon glyphicon-plus"></i> Create New Log</a>
     <table class="table table-striped"> 
         <tr ng-repeat="acct in accts | orderBy:'a_date_displayed':false"> <!--  | limitTo:20 -->
             <td class="post-list-title" width="1%">
-                <a href="#/acct/detail/{{act.a_slug}}">
+                <a href="#/acct/detail/{{acct.a_slug}}">
                     <div class="date">
                         <span class="month">{{acct.date_month}}</span>
                         <span class="day">{{acct.date_day}}</span>
@@ -15,7 +16,7 @@
             <td class="post-list-title" width="99%">
                 <div class="acct-list-edit">
                     <a href="#/acct/edit/{{acct.a_slug}}" class="btn btn-xs btn-primary">
-                    <i class="glyphicon glyphicon-edit"></i> Edit</a>
+                    <i class="glyphicon glyphicon-edit"></i> Edit</a><br>
                     <a href="#/acct/delete/{{acct.a_slug}}" class="btn btn-xs btn-danger">
                     <i class="glyphicon glyphicon-remove-circle"></i> Delete</a> 
                 </div>

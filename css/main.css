@@ -123,19 +123,24 @@ h3 { font-size:16px;font-weight:bold; }
 }
 .acct-edit{ margin-left:3px; }
 .acct-list-edit{ 
-    width:130px;
+    width:70px;
     display:inline-block;
-    float:right; 
+    float:right;
+    text-align:right;
 }
+.acct-list-edit .btn{ margin:0 0 5px 0; }
 .acct-list-edit a{ color:#FFF; }
 .acct-list-edit a:hover{ color:#FFF;text-decoration:none; }
-.post-list-title h2{ margin:0 0 8px 0; }
+.post-list-title h2{ margin:0 0  }
+.acct-list-edit a{ co8px 0; }
 .post-list-title .date{ margin:0; }
 .detail-edit{ margin:8px;float:right; }
 
 .expand-img{ width:100%; }
 .photobox{ width:95%; }
 .login-alert{ padding:12px; }
+.menu-instr{ color:#FFF;font-size:7px;}
+.new-btn{ width:130px;margin-bottom:8px; }
 
 
 
