@@ -19,6 +19,7 @@ angular.module('updaterApp').controller('AcctPaginationController', ['$scope', '
     $http.post($scope.api_url, $routeParams).success(function(data, status, headers){
         if(status == "200"){
             $scope.accts = data;
+            $scope.accts[0].token = $window.sessionStorage.token;
         }
     });
 }]);
@@ -35,8 +36,10 @@ angular.module('updaterApp').controller('AcctNewController', ['$scope', '$http',
         var data = { 
                         a_name: '',
                         username: $window.sessionStorage.username,
+                        uuid: $window.sessionStorage.token,
                         a_date_displayed: '',
                         a_summary: '',
+                        a_type: 'Public',
                         blocks: []
                    };
         $scope.acct = data;
@@ -55,8 +58,10 @@ angular.module('updaterApp').controller('AcctNewController', ['$scope', '$http',
         var data = { 
                         a_name: $scope.acct.a_name,
                         username: $scope.acct.username,
+                        uuid: $scope.acct.uuid,
                         a_date_displayed: $scope.acct.a_date_displayed,
                         a_summary: $scope.acct.a_summary,
+                        a_type: $scope.acct.a_type,
                         blocks: $scope.acct.blocks
                    }; 
         $http.post($scope.save_url, data).success(function(data, status, headers){
@@ -98,6 +103,7 @@ angular.module('updaterApp').controller('AcctDetailController', ['$scope', '$htt
     $http.post($scope.api_url, $routeParams).success(function(data, status, headers){
         if(status == "200"){
             $scope.acct = data[0];
+            $scope.acct.token = $window.sessionStorage.token;
         }
     });  
 }]);
@@ -114,7 +120,16 @@ angular.module('updaterApp').controller('AcctEditController', ['$scope', '$http'
     $scope.api_url = 'http://basics.cinchcms.net/api/accountability/lookup/';
     $http.post($scope.api_url, $routeParams).success(function(data, status, headers){
         if(status == "200"){
+            $scope.types = [{name: 'Public'},{name: 'Private'},{name: 'Friends'}];
             $scope.acct = data[0];
+            var pos = $scope.acct.a_type;
+            var arr = $scope.types;
+            for(var x=0;x<arr.length;x++){
+                if(arr[x].name == pos){
+                    $scope.acct.a_type = $scope.types[x];
+                    break;
+                }
+            }
             $(".datepicker").datepicker({
             	onClose: function() { 
                     var my_model = $(this).attr('ng-model');
@@ -245,8 +260,13 @@ angular.module('updaterApp').controller('AcctSignupController', ['$scope', '$htt
     $scope.api_url = 'http://basics.cinchcms.net/api/accountability/signup/';
     $scope.signup = function(data){
         $http.post($scope.api_url, data).success(function(data, status, headers){
-            /* console.log('in module login result: '+data); */
-			
+            $window.sessionStorage.token = data['uuid'];
+            $window.sessionStorage.username = data['username'];
+            $window.sessionStorage.loggedin = true;
+            $('#login-alert').hide();
+            $('#login-link').hide();
+            $('#logout-link').show();
+            $location.path( '/acct' );
         });
     };
 }]);
