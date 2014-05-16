@@ -9,14 +9,20 @@ updaterApp.controller('NavController', function ($scope, $location) {
 
 //List Pagination Page
 angular.module('updaterApp').controller('AcctPaginationController', ['$scope', '$http', '$routeParams', '$location', '$sce', '$window', function($scope, $http, $routeParams, $location, $sce, $window) {
-	if(typeof $window.sessionStorage.loggedin == 'undefined'){	
+    if(typeof $window.sessionStorage.loggedin == 'undefined'){	
     	$location.path( '/acct/login' ); 
     }else{
     	$('#login-link').hide();
         $('#logout-link').show();
+        if(typeof $routeParams.page != 'undefined'){
+            var data = { token:$window.sessionStorage.token, page:$routeParams.page };
+        }else{
+            var data = { token:$window.sessionStorage.token };
+        }
+        
     }
     $scope.api_url = 'http://basics.cinchcms.net/api/accountability/pagination/';
-    $http.post($scope.api_url, $routeParams).success(function(data, status, headers){
+    $http.post($scope.api_url, data, $routeParams).success(function(data, status, headers){
         if(status == "200"){
             $scope.accts = data;
             $scope.accts[0].token = $window.sessionStorage.token;
@@ -26,7 +32,7 @@ angular.module('updaterApp').controller('AcctPaginationController', ['$scope', '
 
 //New Accountability Post
 angular.module('updaterApp').controller('AcctNewController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window) {
-	if(typeof $window.sessionStorage.loggedin == 'undefined'){	
+    if(typeof $window.sessionStorage.loggedin == 'undefined'){	
     	$location.path( '/acct/login' ); 
     }else{
     	$('#login-link').hide();

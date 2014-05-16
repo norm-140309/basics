@@ -58,6 +58,10 @@ updaterApp.config(function($routeProvider) {
             templateUrl: 'views/acct-signup.html',
             controller: 'AcctSignupController'
         })
+        .when('/acct/:page', {
+            templateUrl: 'views/acct-list.html',
+            controller: 'AcctPaginationController'
+        })
         .otherwise({
             redirectTo: '/'
         });
