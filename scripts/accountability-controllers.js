@@ -49,6 +49,7 @@ angular.module('updaterApp').controller('AcctNewController', ['$scope', '$http',
                         blocks: []
                    };
         $scope.acct = data;
+        $scope.types = [{name: 'Public'},{name: 'Private'},{name: 'Friends'}];
         $(".datepicker").datepicker({
             onClose: function() { 
                 var my_model = $(this).attr('ng-model');
