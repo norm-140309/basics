@@ -16,7 +16,7 @@
     <p>{{post.p_date_displayed}}</p>
     <div class="post-details-block" ng-repeat="block in post.blocks">
         <h3>{{block.pb_title}}</h3>
-        <span class="popup" ><a href="/data/posts/{{block.pb_image_01}}" target="_blank" onclick="return false;"><img ng-src="/data/posts/{{block.thumb_image}}" class="thumbnail th-preview pull-{{block.pb_image_01_float | lowercase}} " ng-show="block.pb_image_01" ></a></span>
+        <span class="popup" ><a href="/data/posts/{{block.pb_image_01}}" target="_blank" onclick="return false;"><img ng-src="http://basics.cinchcms.net/data/posts/{{block.thumb_image}}" class="thumbnail th-preview pull-{{block.pb_image_01_float | lowercase}} " ng-show="block.pb_image_01" ></a></span>
         <div ng-bind-html="block.pb_copy"></div>
         <!--- youtube player --->
         <div my-youtube code="block.pb_youtube" ytid="block.pb_id" ng-show="block.pb_youtube"></div>

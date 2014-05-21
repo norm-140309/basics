@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns   = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "BackToTheBasicsLifestyle"
+        versionCode = "4" 
+        version     = "2.00" >
+
+    <!-- versionCode is optional and Android only -->
+
+    <name>Back to the Basics Lifestyle</name>
+
+    <description>
+        You owe it to yourself to look and feel your best. This app will provide you with simple concise information explaining which foods to eat and which foods to avoid. You will also find articles explaining aerobic and weight training exercise.
+    </description>
+
+    <author href="http://www.cinchcms.net" email="nglomski@gmail.com">
+        Norm Glomski
+    </author>
+
+    <preference name="phonegap-version" value="3.1.0" />
+    
+    <access origin="*" />
+    
+    <preference name="permissions" value="none"/>
+
+    <icon src="img/back-to-the-basics.png" />
+
+</widget>
