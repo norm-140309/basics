@@ -50,6 +50,7 @@ var app = {
     takePicture: function() {
       navigator.camera.getPicture( function( imageURI ) {
         //alert( imageURI );
+        $scope.onFileSelect(imageURI);
       },
       function( message ) {
         alert( message );
