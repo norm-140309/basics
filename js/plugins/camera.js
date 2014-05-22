@@ -47,10 +47,10 @@ var app = {
         console.log('Received Event: ' + id);
     },
 
-    takePicture: function($scope) {
+    takePicture: function() {
       navigator.camera.getPicture( function( imageURI ) {
         //alert( imageURI );
-        $scope.onFileSelect(imageURI);
+        onFileSelect(imageURI);
       },
       function( message ) {
         alert( message );
