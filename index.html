@@ -164,11 +164,7 @@
             <hr>
 
             <footer>
-                <p><button onclick="capturePhoto();">Capture Photo</button></p>
-                <p>
-                    <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
-                    <img style="display:none;" id="largeImage" src="" />
-                </p>
+                <p><button onclick="app.takePicture();">Take Picture</button></p>
             </footer>
         </div>
 
@@ -184,5 +180,10 @@
         <script src="scripts/posts-controllers.js"></script>
         <script src="scripts/accountability-controllers.js"></script>
         <script src="js/main.js"></script>
+        <script type="text/javascript" src="phonegap.js"></script>
+        <script type="text/javascript" src="js/plugins/camera.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
     </body>
 </html>
