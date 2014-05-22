@@ -47,7 +47,7 @@ var app = {
         console.log('Received Event: ' + id);
     },
 
-    takePicture: function() {
+    takePicture: function($scope) {
       navigator.camera.getPicture( function( imageURI ) {
         //alert( imageURI );
         $scope.onFileSelect(imageURI);
