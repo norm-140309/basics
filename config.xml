@@ -3,7 +3,7 @@
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "BackToTheBasicsLifestyle"
         versionCode = "4" 
-        version     = "2.00" />
+        version     = "2.00" >
 
     <!-- versionCode is optional and Android only -->
 
