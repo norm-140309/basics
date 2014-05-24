@@ -176,6 +176,7 @@ angular.module('updaterApp').controller('AcctEditController', ['$scope', '$http'
             $scope.acct.blocks.splice(index, 1);
         };
         $scope.snap_photo = function(Camera){
+            alert('you snapped.');
             Camera.getPicture(function(image) {
                 $scope.$apply(function() {
                     $scope.imageData = image;
