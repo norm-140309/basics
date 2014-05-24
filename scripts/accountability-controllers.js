@@ -177,9 +177,9 @@ angular.module('updaterApp').controller('AcctEditController', ['$scope', '$http'
         };
         $scope.snap_photo = function($scope){
             Camera.getPicture(function(image) {
+                alert('image:'+image);
+                $scope.onFileSelect(image);
                 $scope.$apply(function() {
-                    alert('image:'+image);
-                    $scope.onFileSelect(image);
                     $scope.imageData = image;
                 });
             }, function(error) {
