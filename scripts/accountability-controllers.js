@@ -175,20 +175,22 @@ angular.module('updaterApp').controller('AcctEditController', ['$scope', '$http'
         $scope.remove_block = function(index) {
             $scope.acct.blocks.splice(index, 1);
         };
-        Camera.getPicture(function(image) {
-            $scope.$apply(function() {
-                $scope.imageData = image;
+        $scope.snap_photo = function(){
+            Camera.getPicture(function(image) {
+                $scope.$apply(function() {
+                    $scope.imageData = image;
+                });
+            }, function(error) {
+                $scope.$apply(function() {
+                    $scope.error = error;
+                });
+            }, {
+                destinationType: Camera.DestinationType.FILE_URL,
+                sourceType: Camera.PictureSourceType.CAMERA,
+                encodingType: Camera.EncodingType.JPEG,
+                quality: 80
             });
-        }, function(error) {
-            $scope.$apply(function() {
-                $scope.error = error;
-            });
-        }, {
-            destinationType: Camera.DestinationType.FILE_URL,
-            sourceType: Camera.PictureSourceType.CAMERA,
-            encodingType: Camera.EncodingType.JPEG,
-            quality: 80
-        });
+        }
     }]);
 
 //Accountability Post Page
