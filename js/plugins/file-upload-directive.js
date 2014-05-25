@@ -82,7 +82,7 @@ angular.module('updaterApp').controller( UploadController_acctblocks, ['$scope',
 }]);
 var UploadController_acctblocks = ['$scope', '$upload', function($scope, $upload) {  
 	var num = $scope.$index;
-    $scope.onFileSelect = function($files) {
+    $scope.onFileSelect = function($files) { console.log('files:'+$files);
         for (var i = 0; i < $files.length; i++) {
             var file = $files[i];
             $scope.upload = $upload.upload({

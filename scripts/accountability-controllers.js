@@ -177,12 +177,17 @@ angular.module('updaterApp').controller('AcctEditController', ['$scope', '$http'
         };
         $scope.snap_photo = function($scope){
             Camera.getPicture(function(image,$scope) {
+                $.post( "http://basics.cinchcms.net/api/image_upload.php?site=basics&folder=accountability", {data: image}, function(data) {
+                    alert("Image uploaded!");
+                });
+                /*
                 alert('image:'+image);
                 img_array[0] = image;
                 $scope.onFileSelect(img_array);
                 $scope.$apply(function() {
                     $scope.acct.blocks.ab.imageData = image;
                 });
+                */
             }, function(error) {
                 $scope.$apply(function() {
                     $scope.error = error;
