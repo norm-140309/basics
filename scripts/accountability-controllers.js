@@ -181,7 +181,7 @@ angular.module('updaterApp').controller('AcctEditController', ['$scope', '$http'
                 img_array[0] = image;
                 $scope.onFileSelect(img_array);
                 $scope.$apply(function() {
-                    $scope.imageData = image;
+                    $scope.acct.blocks.ab.imageData = image;
                 });
             }, function(error) {
                 $scope.$apply(function() {
