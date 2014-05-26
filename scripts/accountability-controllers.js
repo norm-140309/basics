@@ -177,7 +177,7 @@ angular.module('updaterApp').controller('AcctEditController', ['$scope', '$http'
         };
         $scope.snap_photo = function($scope){
             Camera.getPicture(function(image,$scope) {
-                $.post( "http://basics.cinchcms.net/api/image_upload.php?site=basics&folder=accountability", {data: image}, function(data) {
+                $.post( "http://basics.cinchcms.net/api/image_upload.php?site=basics&folder=accountability", {data: 'data:image/jpeg;base64,'+image}, function(data) {
                     alert("Image uploaded!");
                 });
                 /*
