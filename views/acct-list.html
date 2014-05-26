@@ -15,7 +15,7 @@
             </td>
             <td class="post-list-title" width="99%">
                 <div class="acct-list-edit" ng-show="accts[0].token == acct.uuid">
-                    <a href="#/acct/edit/{{acct.a_slug}}" class="btn btn-xs btn-primary">
+                    <a href="#/acct/edit/{{acct.a_slug}}" onclick="window.open('http://basics.cinchcms.net/#/acct/edit/{{acct.a_slug}}', '_blank', 'location=yes');return false;" class="btn btn-xs btn-primary">
                     <i class="glyphicon glyphicon-edit"></i> Edit</a><br>
                     <a href="#/acct/delete/{{acct.a_slug}}" class="btn btn-xs btn-danger">
                     <i class="glyphicon glyphicon-remove-circle"></i> Delete</a> 
