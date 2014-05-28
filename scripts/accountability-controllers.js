@@ -118,7 +118,7 @@ angular.module('updaterApp').controller('AcctDetailController', ['$scope', '$htt
 
 
 //Accountability Edit Post
-angular.module('updaterApp').controller('AcctEditController', ['$scope', '$http', '$routeParams', '$location', '$window', 'Camera', function($scope, $http, $routeParams, $location, $window, Camera) {
+angular.module('updaterApp').controller('AcctEditController', ['$scope', '$http', '$routeParams', '$location', '$window', 'Camera', 'PhoneGap', function($scope, $http, $routeParams, $location, $window, Camera, PhoneGap) {
         if (typeof $window.sessionStorage.loggedin == 'undefined') {
             $location.path('/acct/login');
         } else {
