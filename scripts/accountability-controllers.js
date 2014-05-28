@@ -177,20 +177,17 @@ angular.module('updaterApp').controller('AcctEditController', ['$scope', '$http'
         };
         $scope.snap_photo = function($scope){
             Camera.getPicture(function(image,$scope) {
-                uploadPhoto(image);
-                function uploadPhoto(imageURI) {
-                    var options = new FileUploadOptions();
-                    options.fileKey="file";
-                    options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
-                    options.mimeType="image/jpeg";
-                    alert("fileName:"+options.fileName+"\n");
-                    var params = new Object();
-                    params.value1 = "test";
-                    params.value2 = "param";
-                    options.params = params;
+                PhoneGap.ready().then(function () {
                     var ft = new FileTransfer();
-                    ft.upload(imageURI, "http://basics.cinchcms.net/api/image_upload.php?site=basics&folder=accountability", win, fail, options);
-                }
+                    var options = new FileUploadOptions();
+                    options.fileKey = 'file';
+                    options.fileName = image.substr(image.lastIndexOf('/') + 1);
+                    options.params = {
+                        title: 'first upload'
+                    };
+                    ft.upload(image, "http://basics.cinchcms.net/api/image_upload.php?site=basics&folder=accountability", win, fail, options);
+                    alert(options.fileName+' has been uploaded.');
+                });
                 /*
                 $.post( "http://basics.cinchcms.net/api/image_upload.php?site=basics&folder=accountability", {data: 'image/jpeg;base64,'+image}, function(data) {
                     alert("Image uploaded!");
