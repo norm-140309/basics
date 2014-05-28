@@ -177,10 +177,24 @@ angular.module('updaterApp').controller('AcctEditController', ['$scope', '$http'
         };
         $scope.snap_photo = function($scope){
             Camera.getPicture(function(image,$scope) {
+                uploadPhoto(image);
+                function uploadPhoto(imageURI) {
+                    alert('uploadPhoto triggered.');
+                    var options = new FileUploadOptions();
+                    options.fileKey="file";
+                    options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+                    options.mimeType="image/jpeg";
+                    var params = new Object();
+                    params.value1 = "test";
+                    params.value2 = "param";
+                    options.params = params;
+                    var ft = new FileTransfer();
+                    ft.upload(imageURI, "http://basics.cinchcms.net/api/image_upload.php?site=basics&folder=accountability", win, fail, options);
+                }
+                /*
                 $.post( "http://basics.cinchcms.net/api/image_upload.php?site=basics&folder=accountability", {data: 'image/jpeg;base64,'+image}, function(data) {
                     alert("Image uploaded!");
                 });
-                /*
                 alert('image:'+image);
                 img_array[0] = image;
                 $scope.onFileSelect(img_array);
