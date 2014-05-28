@@ -179,11 +179,11 @@ angular.module('updaterApp').controller('AcctEditController', ['$scope', '$http'
             Camera.getPicture(function(image,$scope) {
                 uploadPhoto(image);
                 function uploadPhoto(imageURI) {
-                    alert('uploadPhoto triggered.');
                     var options = new FileUploadOptions();
                     options.fileKey="file";
                     options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
                     options.mimeType="image/jpeg";
+                    alert("fileName:"+options.fileName+"\n");
                     var params = new Object();
                     params.value1 = "test";
                     params.value2 = "param";
