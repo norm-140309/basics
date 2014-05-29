@@ -118,7 +118,7 @@ angular.module('updaterApp').controller('AcctDetailController', ['$scope', '$htt
 
 
 //Accountability Edit Post
-angular.module('updaterApp').controller('AcctEditController', ['$scope', '$http', '$routeParams', '$location', '$window', 'Camera', 'PhoneGap', function($scope, $http, $routeParams, $location, $window, Camera, PhoneGap) {
+angular.module('updaterApp').controller('AcctEditController', ['$scope', '$http', '$routeParams', '$location', '$window', 'PhoneGap', 'Camera', function($scope, $http, $routeParams, $location, $window, PhoneGap, Camera) {
         if (typeof $window.sessionStorage.loggedin == 'undefined') {
             $location.path('/acct/login');
         } else {
@@ -204,7 +204,7 @@ angular.module('updaterApp').controller('AcctEditController', ['$scope', '$http'
                     $scope.error = error;
                 });
             }, {
-                destinationType: Camera.DestinationType.FILE_URL,
+                destinationType: Camera.DestinationType.FILE_URI,
                 sourceType: Camera.PictureSourceType.CAMERA,
                 encodingType: Camera.EncodingType.JPEG,
                 quality: 80
