@@ -8,7 +8,7 @@ updaterApp.controller('NavController', function($scope, $location) {
 });
 
 //List Pagination Page
-angular.module('updaterApp').controller('AcctPaginationController', ['$scope', '$http', '$routeParams', '$location', '$sce', '$window', function($scope, $http, $routeParams, $location, $sce, $window) {
+updaterApp.controller('AcctPaginationController', ['$scope', '$http', '$routeParams', '$location', '$sce', '$window', function($scope, $http, $routeParams, $location, $sce, $window) {
         if (typeof $window.sessionStorage.loggedin == 'undefined') {
             $location.path('/acct/login');
         } else {
@@ -31,7 +31,7 @@ angular.module('updaterApp').controller('AcctPaginationController', ['$scope', '
     }]);
 
 //New Accountability Post
-angular.module('updaterApp').controller('AcctNewController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window) {
+updaterApp.controller('AcctNewController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window) {
         if (typeof $window.sessionStorage.loggedin == 'undefined') {
             $location.path('/acct/login');
         } else {
@@ -99,7 +99,7 @@ angular.module('updaterApp').controller('AcctNewController', ['$scope', '$http',
     }]);
 
 //Accountability Post Details
-angular.module('updaterApp').controller('AcctDetailController', ['$scope', '$http', '$routeParams', '$location', '$sce', '$window', function($scope, $http, $routeParams, $location, $sce, $window) {
+updaterApp.controller('AcctDetailController', ['$scope', '$http', '$routeParams', '$location', '$sce', '$window', function($scope, $http, $routeParams, $location, $sce, $window) {
         if (typeof $window.sessionStorage.loggedin == 'undefined') {
             $location.path('/acct/login');
         } else {
@@ -118,7 +118,7 @@ angular.module('updaterApp').controller('AcctDetailController', ['$scope', '$htt
 
 
 //Accountability Edit Post
-angular.module('updaterApp').controller('AcctEditController', ['$scope', '$http', '$routeParams', '$location', '$window', 'PhoneGap', 'Camera', 'PhotoService', function($scope, $http, $routeParams, $location, $window, PhoneGap, Camera, PhotoService) {
+updaterApp.controller('AcctEditController', ['$scope', '$http', '$routeParams', '$location', '$window', 'CameraFactory', function($scope, $http, $routeParams, $location, $window, PhoneGap, Camera, PhotoService) {
         if (typeof $window.sessionStorage.loggedin == 'undefined') {
             $location.path('/acct/login');
         } else {
@@ -175,47 +175,13 @@ angular.module('updaterApp').controller('AcctEditController', ['$scope', '$http'
         $scope.remove_block = function(index) {
             $scope.acct.blocks.splice(index, 1);
         };
-        $scope.snap_photo = function($scope){
-            Camera.getPicture(function(image,$scope) {
-                $scope.$apply(function () {
-                    $scope.picture = image;
-                });
-            }, function(error) {
-                $scope.$apply(function() {
-                    $scope.error = error;
-                });
-            }, {
-                destinationType: Camera.DestinationType.FILE_URI,
-                sourceType: Camera.PictureSourceType.CAMERA,
-                encodingType: Camera.EncodingType.JPEG,
-                quality: 80
-            });
-            $scope.upload = function () {
-                if ($scope.picture) {
-                    $scope.upload = {};
-                    PhotoService.upload($scope.picture, function(res) {
-                        $scope.$apply(function() {
-                            $scope.upload = null;
-                            //$location.path('/');
-                        });
-                    }, function(error) {
-                        $scope.$apply(function() {
-                            $scope.upload = null;
-                        });
-                    }, function(progress) {
-                        if (progress.lengthComputable) {
-                            $scope.$apply(function() {
-                                $scope.upload.percent = progress.loaded / progress.total * 100 + '%';
-                            });
-                        }
-                    });
-                }
-            }
+        $scope.doGetImage = function(){
+            CameraFactory.getImage();
         }
     }]);
 
 //Accountability Post Page
-angular.module('updaterApp').controller('AcctDeleteController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window) {
+updaterApp.controller('AcctDeleteController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window) {
         if (typeof $window.sessionStorage.loggedin == 'undefined') {
             $location.path('/acct/login');
         } else {
@@ -242,7 +208,7 @@ angular.module('updaterApp').controller('AcctDeleteController', ['$scope', '$htt
     }]);
 
 //Accountability Login Page
-angular.module('updaterApp').controller('AcctLoginController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window) {
+updaterApp.controller('AcctLoginController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window) {
         //console.log('uuid: '+$window.sessionStorage.token);
         $scope.api_url = 'http://basics.cinchcms.net/api/accountability/login/';
         $scope.login = function(data) {
@@ -276,7 +242,7 @@ angular.module('updaterApp').controller('AcctLoginController', ['$scope', '$http
     }]);
 
 //Accountability Logout Page
-angular.module('updaterApp').controller('AcctLogoutController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window) {
+updaterApp.controller('AcctLogoutController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window) {
         //console.log('uuid: '+$window.sessionStorage.token);
         $scope.api_url = 'http://basics.cinchcms.net/api/accountability/login/';
         var data = {"email": "", "password": ""};
@@ -292,7 +258,7 @@ angular.module('updaterApp').controller('AcctLogoutController', ['$scope', '$htt
     }]);
 
 //Accountability Login Page
-angular.module('updaterApp').controller('AcctSignupController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window) {
+updaterApp.controller('AcctSignupController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window) {
         //console.log('uuid: '+$window.sessionStorage.token);
         var data = {
             firstname: '',

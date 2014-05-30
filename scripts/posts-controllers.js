@@ -1,6 +1,6 @@
 'use strict';
 //List Page
-angular.module('updaterApp').controller('PostsListController', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location) {
+updaterApp.controller('PostsListController', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location) {
     $scope.api_url = 'http://basics.cinchcms.net/api/posts/';
     $http.post($scope.api_url, $routeParams).success(function(data, status, headers){
         $scope.posts = data;
@@ -12,7 +12,7 @@ angular.module('updaterApp').controller('PostsListController', ['$scope', '$http
 
 
 //List Pagination Page
-angular.module('updaterApp').controller('PostsPaginationController', ['$scope', '$http', '$routeParams', '$location', '$sce', '$window', function($scope, $http, $routeParams, $location, $sce, $window) {
+updaterApp.controller('PostsPaginationController', ['$scope', '$http', '$routeParams', '$location', '$sce', '$window', function($scope, $http, $routeParams, $location, $sce, $window) {
     if(typeof $window.sessionStorage.loggedin != 'undefined'){	
     	$('#login-link').hide();
         $('#logout-link').show();
@@ -27,7 +27,7 @@ angular.module('updaterApp').controller('PostsPaginationController', ['$scope', 
 
 
 //List Section Page
-angular.module('updaterApp').controller('PostsSectionController', ['$scope', '$http', '$routeParams', '$location', '$sce', '$window', function($scope, $http, $routeParams, $location, $sce, $window) {
+updaterApp.controller('PostsSectionController', ['$scope', '$http', '$routeParams', '$location', '$sce', '$window', function($scope, $http, $routeParams, $location, $sce, $window) {
 	if(typeof $window.sessionStorage.loggedin != 'undefined'){	
       	$('#login-link').hide();
       	$('#logout-link').show();
@@ -42,7 +42,7 @@ angular.module('updaterApp').controller('PostsSectionController', ['$scope', '$h
 
 
 //Post Details
-angular.module('updaterApp').controller('PostsDetailController', ['$scope', '$http', '$routeParams', '$location', '$sce', '$window', function($scope, $http, $routeParams, $location, $sce, $window) {
+updaterApp.controller('PostsDetailController', ['$scope', '$http', '$routeParams', '$location', '$sce', '$window', function($scope, $http, $routeParams, $location, $sce, $window) {
 	if(typeof $window.sessionStorage.loggedin != 'undefined'){	
       	$('#login-link').hide();
       	$('#logout-link').show();
@@ -99,7 +99,7 @@ updaterApp.directive('myMp3', function($sce) {
 });
 
 //Delete Post Page
-angular.module('updaterApp').controller('PostsDeleteController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window){
+updaterApp.controller('PostsDeleteController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window){
     if(typeof $window.sessionStorage.loggedin != 'undefined'){	
       	$('#login-link').hide();
       	$('#logout-link').show();
