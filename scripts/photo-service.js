@@ -8,7 +8,7 @@ angular.module('updaterApp')
             PhoneGap.ready().then(function () {
                     var ft = new FileTransfer();
                     var options = new FileUploadOptions();
-                    options.fileKey = 'photo';
+                    options.fileKey = 'file';
                     options.fileName = image.substr(image.lastIndexOf('/') + 1);
                     options.params = {
                         title: 'first upload'
