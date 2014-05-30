@@ -118,7 +118,7 @@ angular.module('updaterApp').controller('AcctDetailController', ['$scope', '$htt
 
 
 //Accountability Edit Post
-angular.module('updaterApp').controller('AcctEditController', ['$scope', '$http', '$routeParams', '$location', '$window', 'PhoneGap', 'Camera', function($scope, $http, $routeParams, $location, $window, PhoneGap, Camera) {
+angular.module('updaterApp').controller('AcctEditController', ['$scope', '$http', '$routeParams', '$location', '$window', 'PhoneGap', 'Camera', 'PhotoService', function($scope, $http, $routeParams, $location, $window, PhoneGap, Camera, PhotoService) {
         if (typeof $window.sessionStorage.loggedin == 'undefined') {
             $location.path('/acct/login');
         } else {
@@ -177,28 +177,9 @@ angular.module('updaterApp').controller('AcctEditController', ['$scope', '$http'
         };
         $scope.snap_photo = function($scope){
             Camera.getPicture(function(image,$scope) {
-                PhoneGap.ready().then(function () {
-                    var ft = new FileTransfer();
-                    var options = new FileUploadOptions();
-                    options.fileKey = 'file';
-                    options.fileName = image.substr(image.lastIndexOf('/') + 1);
-                    options.params = {
-                        title: 'first upload'
-                    };
-                    ft.upload(image, "http://basics.cinchcms.net/api/image_upload.php?site=basics&folder=accountability", win, fail, options);
-                    alert(options.fileName+' has been uploaded.');
+                $scope.$apply(function () {
+                    $scope.picture = image;
                 });
-                /*
-                $.post( "http://basics.cinchcms.net/api/image_upload.php?site=basics&folder=accountability", {data: 'image/jpeg;base64,'+image}, function(data) {
-                    alert("Image uploaded!");
-                });
-                alert('image:'+image);
-                img_array[0] = image;
-                $scope.onFileSelect(img_array);
-                $scope.$apply(function() {
-                    $scope.acct.blocks.ab.imageData = image;
-                });
-                */
             }, function(error) {
                 $scope.$apply(function() {
                     $scope.error = error;
@@ -209,6 +190,27 @@ angular.module('updaterApp').controller('AcctEditController', ['$scope', '$http'
                 encodingType: Camera.EncodingType.JPEG,
                 quality: 80
             });
+            $scope.upload = function () {
+                if ($scope.picture) {
+                    $scope.upload = {};
+                    PhotoService.upload($scope.picture, function(res) {
+                        $scope.$apply(function() {
+                            $scope.upload = null;
+                            //$location.path('/');
+                        });
+                    }, function(error) {
+                        $scope.$apply(function() {
+                            $scope.upload = null;
+                        });
+                    }, function(progress) {
+                        if (progress.lengthComputable) {
+                            $scope.$apply(function() {
+                                $scope.upload.percent = progress.loaded / progress.total * 100 + '%';
+                            });
+                        }
+                    });
+                }
+            }
         }
     }]);
 
