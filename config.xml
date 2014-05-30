@@ -24,6 +24,7 @@
     <preference name="permissions" value="none"/>
     
     <gap:plugin name="org.apache.cordova.core.camera" />
+    <gap:plugin name="org.apache.cordova.file-transfer"  />
 
 
     <icon src="img/back-to-the-basics.png" />
