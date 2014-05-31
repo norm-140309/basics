@@ -9,8 +9,7 @@ updaterApp.factory('CameraFactory', function() {
         // Do cool things here...
     }
     /*function getImage() {*/
-    factory.getImage = function(index) {
-        $scope.index = index;
+    factory.getImage = function() {
         // Retrieve image file location from specified source
         navigator.camera.getPicture(uploadPhoto(), function(message) {
             alert('get picture failed');
@@ -38,7 +37,7 @@ updaterApp.factory('CameraFactory', function() {
         console.log("Response = " + r.response);
         console.log("Sent = " + r.bytesSent);
         alert(r.response);
-        var num = $scope.index;
+        var num = $scope.$index;
         $scope.acct.blocks[num].ab_image_01 = r.response.filename;
     }
     function fail(error) {
