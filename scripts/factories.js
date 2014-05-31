@@ -37,9 +37,9 @@ updaterApp.factory('CameraFactory', function() {
         console.log("Code = " + r.responseCode);
         console.log("Response = " + r.response);
         console.log("Sent = " + r.bytesSent);
-        alert(r.response);
-        //var num = $scope.$index;
-        //$scope.acct.blocks[num].ab_image_01 = r.response.filename;
+        alert('filename: '+r.response.filename);
+        var num = $scope.$index;
+        $scope.acct.blocks[num].ab_image_01 = r.response.filename;
     }
     function fail(error) {
         alert("An error has occurred: Code = " + error.code);
