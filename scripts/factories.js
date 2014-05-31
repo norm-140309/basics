@@ -26,8 +26,8 @@ updaterApp.factory('CameraFactory', function() {
         options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
         options.mimeType = "image/jpeg";
         var params = new Object();
-        params.uuid = "abcd1234";
-        params.num = "param";
+        params.num = $scope.$index;
+        alert('num:'+$scope.$index);
         options.params = params;
         options.chunkedMode = false;
         var ft = new FileTransfer();
