@@ -37,11 +37,11 @@ updaterApp.factory('CameraFactory', function() {
         console.log("Code = " + r.responseCode);
         console.log("Response = " + r.response);
         console.log("Sent = " + r.bytesSent);
-        var response = r.response;
-        alert(response);
-        alert('filename: '+response.filename);
+        //var response = r.response;
+        //alert(response);
+        alert('filename: '+r.filename);
         var num = $scope.$index;
-        $scope.acct.blocks[num].ab_image_01 = r.response.filename;
+        $scope.acct.blocks[num].ab_image_01 = r.filename;
     }
     function fail(error) {
         alert("An error has occurred: Code = " + error.code);
