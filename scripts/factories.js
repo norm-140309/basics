@@ -1,6 +1,6 @@
 'use strict';
 
-updaterApp.factory('CameraFactory', function() {
+updaterApp.factory('CameraFactory', function($scope) {
     var factory = {};
     // Wait for PhoneGap to load
     document.addEventListener("deviceready", onDeviceReady, false);
