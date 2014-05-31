@@ -1,6 +1,6 @@
 'use strict';
 
-updaterApp.factory('CameraFactory', function($scope) {
+updaterApp.factory('CameraFactory', function() {
     var factory = {};
     // Wait for PhoneGap to load
     document.addEventListener("deviceready", onDeviceReady, false);
@@ -9,9 +9,10 @@ updaterApp.factory('CameraFactory', function($scope) {
         // Do cool things here...
     }
     /*function getImage() {*/
-    factory.getImage = function() {
+    factory.getImage = function(index) {
+        $scope.index = index;
         // Retrieve image file location from specified source
-        navigator.camera.getPicture(uploadPhoto, function(message) {
+        navigator.camera.getPicture(uploadPhoto(), function(message) {
             alert('get picture failed');
         }, {
             quality: 80,
@@ -26,8 +27,7 @@ updaterApp.factory('CameraFactory', function($scope) {
         options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
         options.mimeType = "image/jpeg";
         var params = new Object();
-        params.num = $scope.$index;
-        alert('num:'+$scope.$index);
+        params.num = 1;
         options.params = params;
         options.chunkedMode = false;
         var ft = new FileTransfer();
@@ -38,8 +38,8 @@ updaterApp.factory('CameraFactory', function($scope) {
         console.log("Response = " + r.response);
         console.log("Sent = " + r.bytesSent);
         alert(r.response);
-        var num = $scope.$index;
-        $scope.acct.blocks[num].ab_image_01 = data.filename;
+        var num = $scope.index;
+        $scope.acct.blocks[num].ab_image_01 = r.response.filename;
     }
     function fail(error) {
         alert("An error has occurred: Code = " + error.code);
