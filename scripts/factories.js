@@ -11,7 +11,7 @@ updaterApp.factory('CameraFactory', function() {
     /*function getImage() {*/
     factory.getImage = function() {
         // Retrieve image file location from specified source
-        navigator.camera.getPicture(uploadPhoto(), function(message) {
+        navigator.camera.getPicture(uploadPhoto, function(message) {
             alert('get picture failed');
         }, {
             quality: 80,
@@ -27,7 +27,7 @@ updaterApp.factory('CameraFactory', function() {
         options.mimeType = "image/jpeg";
         var params = new Object();
         params.uuid = "abcd1234";
-        params.num = "param";
+        params.value2 = "param";
         options.params = params;
         options.chunkedMode = false;
         var ft = new FileTransfer();
@@ -38,8 +38,8 @@ updaterApp.factory('CameraFactory', function() {
         console.log("Response = " + r.response);
         console.log("Sent = " + r.bytesSent);
         alert(r.response);
-        var num = $scope.$index;
-        $scope.acct.blocks[num].ab_image_01 = r.response.filename;
+        //var num = $scope.$index;
+        //$scope.acct.blocks[num].ab_image_01 = r.response.filename;
     }
     function fail(error) {
         alert("An error has occurred: Code = " + error.code);
