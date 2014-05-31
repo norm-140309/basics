@@ -27,17 +27,19 @@ updaterApp.factory('CameraFactory', function() {
         options.mimeType = "image/jpeg";
         var params = new Object();
         params.uuid = "abcd1234";
-        params.value2 = "param";
+        params.num = "param";
         options.params = params;
         options.chunkedMode = false;
         var ft = new FileTransfer();
-        ft.upload(imageURI, "http://basics.cinchcms.net/api/image_upload.php?site=basics&folder=users", win, fail, options);
+        ft.upload(imageURI, "http://basics.cinchcms.net/api/image_upload.php?site=basics&folder=accountability", win, fail, options);
     }
     function win(r) {
         console.log("Code = " + r.responseCode);
         console.log("Response = " + r.response);
         console.log("Sent = " + r.bytesSent);
-        alert(r.response);
+        //alert(r.response);
+        var num = $scope.$index;
+        $scope.acct.blocks[num].ab_image_01 = data.filename;
     }
     function fail(error) {
         alert("An error has occurred: Code = " + error.code);
