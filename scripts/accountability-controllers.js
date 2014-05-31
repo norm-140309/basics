@@ -175,8 +175,8 @@ updaterApp.controller('AcctEditController', ['$scope', '$http', '$routeParams', 
         $scope.remove_block = function(index) {
             $scope.acct.blocks.splice(index, 1);
         };
-        $scope.doGetImage = function(index){
-            CameraFactory.getImage(index);
+        $scope.doGetImage = function(){
+            CameraFactory.getImage();
         }
     }]);
 
