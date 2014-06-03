@@ -1,6 +1,6 @@
 'use strict';
 
-updaterApp.factory('CameraFactory', function($scope) {
+updaterApp.factory('CameraFactory', function() {
     var factory = {};
     // Wait for PhoneGap to load
     document.addEventListener("deviceready", onDeviceReady, false);
@@ -39,10 +39,7 @@ updaterApp.factory('CameraFactory', function($scope) {
         console.log("Sent = " + r.bytesSent);
         var response = r.response;
         response = $.parseJSON(response);
-        var camera_pic = response.filename;
-        alert('uploadPhoto active_block: '+$scope.active_block);
-        $scope.acct.blocks[$scope.active_block].ab_image_01 = camera_pic;
-        alert('pic:' + camera_pic);
+        factory.camera_pic = response.filename;
     }
     function fail(error) {
         alert("An error has occurred: Code = " + error.code);
