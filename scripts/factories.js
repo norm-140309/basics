@@ -31,7 +31,8 @@ updaterApp.factory('CameraFactory', function() {
         options.params = params;
         options.chunkedMode = false;
         var ft = new FileTransfer();
-        ft.upload(imageURI, "http://basics.cinchcms.net/api/image_upload.php?site=basics&folder=accountability", win, fail, options);
+        var result = ft.upload(imageURI, "http://basics.cinchcms.net/api/image_upload.php?site=basics&folder=accountability", win, fail, options);
+        return result;
     }
     function win(r) {
         console.log("Code = " + r.responseCode);
@@ -43,7 +44,9 @@ updaterApp.factory('CameraFactory', function() {
         //next line is causing errors
         var num = $scope.$index;
         alert('blocks['+num+'].ab_image_01 = '+filename);
-        $scope.acct.blocks[num].ab_image_01 = filename;
+        var result = [ {"filename": filename} ];
+        return result;
+        //$scope.acct.blocks[num].ab_image_01 = filename;
     }
     function fail(error) {
         alert("An error has occurred: Code = " + error.code);

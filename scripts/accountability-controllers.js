@@ -176,7 +176,9 @@ updaterApp.controller('AcctEditController', ['$scope', '$http', '$routeParams', 
             $scope.acct.blocks.splice(index, 1);
         };
         $scope.doGetImage = function(){
-            CameraFactory.getImage($scope);
+            var photo = CameraFactory.getImage($scope);
+            var num = $scope.$index;
+            $scope.acct.blocks[num].ab_image_01 = photo.filename;
         }
     }]);
 
