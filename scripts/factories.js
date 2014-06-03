@@ -32,8 +32,6 @@ updaterApp.factory('CameraFactory', function() {
         options.chunkedMode = false;
         var ft = new FileTransfer();
         var result = ft.upload(imageURI, "http://basics.cinchcms.net/api/image_upload.php?site=basics&folder=accountability", win, fail, options);
-        alert('result: '+result);
-        return result;
     }
     function win(r) {
         console.log("Code = " + r.responseCode);
