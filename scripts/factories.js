@@ -19,8 +19,6 @@ updaterApp.factory('CameraFactory', function() {
             sourceType: navigator.camera.PictureSourceType.CAMERA
         }
         );
-        alert('getImage result: '+result);
-        return result;
     }
     function uploadPhoto(imageURI) {
         var options = new FileUploadOptions();
@@ -42,9 +40,8 @@ updaterApp.factory('CameraFactory', function() {
         var response = r.response;
         response = $.parseJSON(response);
         var camera_pic = response.filename;
+        $scope.acct.blocks[$scope.acct.active_block].ab_image_01 = camera_pic;
         alert('pic:' + camera_pic);
-        var result = [{filename: camera_pic}];
-        return result;
     }
     function fail(error) {
         alert("An error has occurred: Code = " + error.code);
