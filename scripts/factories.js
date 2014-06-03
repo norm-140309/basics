@@ -11,7 +11,7 @@ updaterApp.factory('CameraFactory', function() {
     /*function getImage() {*/
     factory.getImage = function() {
         // Retrieve image file location from specified source
-        navigator.camera.getPicture(uploadPhoto, function(message) {
+        return navigator.camera.getPicture(uploadPhoto, function(message) {
             alert('get picture failed');
         }, {
             quality: 80,
@@ -31,7 +31,7 @@ updaterApp.factory('CameraFactory', function() {
         options.params = params;
         options.chunkedMode = false;
         var ft = new FileTransfer();
-        var result = ft.upload(imageURI, "http://basics.cinchcms.net/api/image_upload.php?site=basics&folder=accountability", win, fail, options);
+        return ft.upload(imageURI, "http://basics.cinchcms.net/api/image_upload.php?site=basics&folder=accountability", win, fail, options);
     }
     function win(r) {
         console.log("Code = " + r.responseCode);
@@ -39,8 +39,9 @@ updaterApp.factory('CameraFactory', function() {
         console.log("Sent = " + r.bytesSent);
         var response = r.response;
         response = $.parseJSON(response);
-        var camera_pic = response.filename;alert('pic:'+camera_pic);
-        var result = [ {filename: camera_pic} ];
+        var camera_pic = response.filename;
+        alert('pic:' + camera_pic);
+        var result = [{filename: camera_pic}];
         return result;
     }
     function fail(error) {
@@ -53,19 +54,19 @@ updaterApp.factory('CameraFactory', function() {
         {title: "Magician", author: "Raymond E. Feist"},
         {title: "The Hobbit", author: "J.R.R. Tolkien"}
     ];
-    
+
     factory.getBooks = function() {
         return books;
     }
-    
+
     factory.hello = function() { //Simply return a string value that is called inside curly braces.
         return "Hello Norm.";
     }
 
-    factory.sayHello = function(){ //A factory function referred to inside the controller
+    factory.sayHello = function() { //A factory function referred to inside the controller
         magic();
     }
-    function magic(){  //A function inside the factory that contains the action
+    function magic() {  //A function inside the factory that contains the action
         alert("Yikes, it is magic!");
     }
     // End of samples
