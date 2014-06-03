@@ -11,7 +11,7 @@ updaterApp.factory('CameraFactory', function() {
     /*function getImage() {*/
     factory.getImage = function() {
         // Retrieve image file location from specified source
-        navigator.camera.getPicture(uploadPhoto, function(message) {
+        var result = navigator.camera.getPicture(uploadPhoto, function(message) {
             alert('get picture failed');
         }, {
             quality: 80,
@@ -19,7 +19,8 @@ updaterApp.factory('CameraFactory', function() {
             sourceType: navigator.camera.PictureSourceType.CAMERA
         }
         );
-        alert('getImage message: '+message);
+        alert('getImage result: '+result);
+        return result;
     }
     function uploadPhoto(imageURI) {
         var options = new FileUploadOptions();
