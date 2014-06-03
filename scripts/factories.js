@@ -41,12 +41,8 @@ updaterApp.factory('CameraFactory', function() {
         var response = r.response;
         response = $.parseJSON(response);
         filename = response.filename;
-        //next line is causing errors
-        var num = $scope.$index;
-        alert('blocks['+num+'].ab_image_01 = '+filename);
         var result = [ {"filename": filename} ];
         return result;
-        //$scope.acct.blocks[num].ab_image_01 = filename;
     }
     function fail(error) {
         alert("An error has occurred: Code = " + error.code);
