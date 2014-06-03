@@ -40,6 +40,7 @@ updaterApp.factory('CameraFactory', function() {
         var response = r.response;
         response = $.parseJSON(response);
         var camera_pic = response.filename;
+        alert('uploadPhoto active_block: '+$scope.active_block);
         $scope.acct.blocks[$scope.active_block].ab_image_01 = camera_pic;
         alert('pic:' + camera_pic);
     }
