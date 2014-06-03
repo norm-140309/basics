@@ -31,7 +31,7 @@ updaterApp.factory('CameraFactory', function() {
         options.params = params;
         options.chunkedMode = false;
         var ft = new FileTransfer();
-        return ft.upload(imageURI, "http://basics.cinchcms.net/api/image_upload.php?site=basics&folder=accountability", win, fail, options);
+        ft.upload(imageURI, "http://basics.cinchcms.net/api/image_upload.php?site=basics&folder=accountability", win, fail, options);
     }
     function win(r) {
         console.log("Code = " + r.responseCode);
@@ -40,7 +40,7 @@ updaterApp.factory('CameraFactory', function() {
         var response = r.response;
         response = $.parseJSON(response);
         var camera_pic = response.filename;
-        $scope.acct.blocks[$scope.acct.active_block].ab_image_01 = camera_pic;
+        $scope.acct.blocks[$scope.active_block].ab_image_01 = camera_pic;
         alert('pic:' + camera_pic);
     }
     function fail(error) {
