@@ -40,8 +40,8 @@ updaterApp.factory('CameraFactory', function() {
         console.log("Sent = " + r.bytesSent);
         var response = r.response;
         response = $.parseJSON(response);
-        filename = response.filename;
-        var result = [ {"filename": filename} ];
+        var camera_pic = response.filename;
+        var result = [ {filename: camera_pic} ];
         return result;
     }
     function fail(error) {
