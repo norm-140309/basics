@@ -50,13 +50,12 @@
                                             <div class="col-md-5">
                                                 <input type="file" ng-file-select="onFileSelect($files)" class="pull-left" ng-hide="ab.ab_image_01" accept="image/*" capture="camera">
                                                 <!--  -->
-                                                <button ng-click="doGetImage()" class="pull-left" ng-hide="ab.ab_image_01" style="margin-top:5px;">Take Photo</button>
+                                                <button ng-click="doGetImage({{$index}})" class="pull-left" ng-hide="ab.ab_image_01" style="margin-top:5px;">Take Photo</button>
                                                 <div ng-show="ab.ab_image_01" style="padding-left:8px;" >
                                                     <a href="" class="btn btn-xs btn-danger" ng-click="delete()" >
                                                         <i class="glyphicon glyphicon-remove-circle"></i> Delete
                                                     </a>
                                                 </div>
-                                                imageData:{{ab.imageData}}
                                             </div>
                                             <div class="col-md-1">
                                                 <img ng-src="http://basics.cinchcms.net/data/accountability/{{ab.ab_image_01}}" class="pull-right thumbnail th-preview" ng-show="ab.ab_image_01">
