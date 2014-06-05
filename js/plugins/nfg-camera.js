@@ -28,7 +28,7 @@ function uploadPhoto(imageURI) {
         Connection: "close"
     };
     var ft = new FileTransfer();
-    ft.upload(imageURI, "http://glomski.is.starkmedia.com/pg-camera/api/upload.php", win, fail, options);
+    ft.upload(imageURI, "http://basics.cinchcms.net/api/image_upload.php?site=basics&folder=accountability", win, fail, options);
 }
 function win(r) {
     var resp = $.parseJSON(r.response);

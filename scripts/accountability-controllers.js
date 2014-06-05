@@ -174,11 +174,25 @@ updaterApp.controller('AcctEditController', ['$scope', '$http', '$routeParams', 
         };
         $scope.remove_block = function(index) {
             $scope.acct.blocks.splice(index, 1);
+        };        
+        $scope.doGetImage = function(num) {
+            $scope.block_num = num;
+            getImage();
         };
-        $scope.doGetImage = function(num){
-            var photo = CameraFactory.getImage();
-            alert('doGet photo: '+photo);
-        }
+        $scope.doRootToScope = function(pic) {
+            //$scope.camera_pic = pic;
+            $scope.acct.blocks[$scope.block_num].ab_image_01 = pic;
+            alert('doRootToScope() received: |' + pic + '|');
+        };
+        $scope.doLoadImage = function() {
+            var txt_url = 'http://basics.cinchcms.net/api/last_image.txt';
+            $http.get(txt_url).success(function(data, status) {
+                //$scope.camera_data = data;
+                //$scope.camera_pic = data.filename;
+                //$scope.camera_thumb = data.thumbname;
+                $scope.acct.blocks[$scope.block_num].ab_image_01 = data.filename;
+            });
+        };
     }]);
 
 //Accountability Post Page
