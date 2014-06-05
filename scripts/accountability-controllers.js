@@ -118,7 +118,7 @@ updaterApp.controller('AcctDetailController', ['$scope', '$http', '$routeParams'
 
 
 //Accountability Edit Post
-updaterApp.controller('AcctEditController', ['$scope', '$http', '$routeParams', '$location', '$window', 'CameraFactory', function($scope, $http, $routeParams, $location, $window, CameraFactory) {
+updaterApp.controller('AcctEditController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window) {
         if (typeof $window.sessionStorage.loggedin == 'undefined') {
             $location.path('/acct/login');
         } else {
