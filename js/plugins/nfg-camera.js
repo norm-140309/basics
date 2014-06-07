@@ -28,12 +28,22 @@ function uploadPhoto(imageURI) {
         Connection: "close"
     };
     var ft = new FileTransfer();
+    ft.onprogress = function(progressEvent) {
+        if (progressEvent.lengthComputable) {
+            $('#CameraId').find('.progress').show();
+            var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
+            $('#camera_status').text(perc + "%");
+            $('#progressbar').css("width", perc + "%");
+        }
+    };
     ft.upload(imageURI, "http://basics.cinchcms.net/api/image_upload.php?site=basics&folder=accountability", win, fail, options);
 }
 function win(r) {
     var resp = $.parseJSON(r.response);
     var camera_pic = resp.filename;
     pushPicToScope(r);
+    $('#camera_status').text("Image upload complete.");
+    $('#CameraId').find('.progress').fadeOut("slow");
 }
 function fail(error) {
     alert("An error has occurred: Code = " + error.code);
