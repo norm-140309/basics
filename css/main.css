@@ -1,3 +1,18 @@
+.fake-input-group{ position:relative; }
+.fake-input-group .file-object{ 
+    z-index: 2;
+    position:absolute;
+    left:0;top:28px; 
+    opacity: 0;
+}
+.fake-input-group a{ 
+    z-index: 1;
+    position:absolute;
+    left:0;top:28px; 
+    margin-left:15px;
+    width:88px;
+}
+.camera_btn { position:absolute; margin-top:13px; }
 .loginForm{
     width:75%;
 }
