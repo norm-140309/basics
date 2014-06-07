@@ -30,10 +30,10 @@ function uploadPhoto(imageURI) {
     var ft = new FileTransfer();
     ft.onprogress = function(progressEvent) {
         if (progressEvent.lengthComputable) {
-            $('#CameraId').find('.progress').show();
+            $('.progress').show();
             var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
-            $('#camera_status').text(perc + "%");
-            $('#progressbar').css("width", perc + "%");
+            $('.camera_status').text(perc + "%");
+            $('.progress-bar').css("width", perc + "%");
         }
     };
     ft.upload(imageURI, "http://basics.cinchcms.net/api/image_upload.php?site=basics&folder=accountability", win, fail, options);
