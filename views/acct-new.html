@@ -28,18 +28,18 @@
         -->
         <tr> 
             <td>
-            	<label for="blocks">Post Blocks</label>
+            	<label for="blocks">Post Items</label>
             </td>
             <td>
             	<div ng-repeat="ab in acct.blocks" class="form-horizontal row-fluid form-inline">
                 	<div class="table-container block-table">
     					<a href="" class="btn btn-xs btn-danger pull-right remove-block" ng-click="remove_block($index)" >
-                            <i class="glyphicon glyphicon-remove-circle"></i> Remove Block
+                            <i class="glyphicon glyphicon-remove-circle"></i> Remove Item
                         </a>
-                        <h3>Content Block {{$index+1}}</h3>                        
+                        <h3>Item {{$index+1}}</h3>                        
                         <table class="table table-striped" >
                             <tr>
-                                <td><label for="ab.ab_title{{ab.ab_id}}">Block Title</label></td>
+                                <td><label for="ab.ab_title{{ab.ab_id}}">Item Title</label></td>
                                 <td><input type="text" id="ab.ab_title{{ab.ab_id}}" ng-model="ab.ab_title" ></td>
                             </tr>                            
                             <tr>
@@ -58,10 +58,20 @@
                                                 </div>
                                                 <input type="text" ng-model="ab.ab_image_01" disabled class="pull-left" style="margin-right:20px;" >
                                             </div>
-                                            <div class="col-md-5">
-                                                <input type="file" ng-file-select="onFileSelect($files)" class="pull-left" ng-hide="ab.ab_image_01" accept="image/*" capture="camera" >
-                                                <button ng-click="doGetImage($index)" class="pull-left" ng-hide="ab.ab_image_01" style="margin-top:5px;">Take Photo</button>
+                                            <div class="col-md-5 fake-input-group" >
+                                                <br clear="left">
+                                                <a href="return false;" class="btn btn-xs btn-default" ng-hide="ab.ab_image_01" >
+                                                    <i class="glyphicon glyphicon-file"></i> Browse...
+                                                </a>
+                                                <input type="file" ng-file-select="onFileSelect($files)" class="pull-left file-object" accept="image/*" capture="camera" ng-hide="ab.ab_image_01" >
+                                                <span ng-hide="ab.ab_image_01" ><br></span>
+                                                <button ng-click="doGetImage($index)" class="pull-left btn btn-xs btn-info camera_btn" ng-hide="ab.ab_image_01" >
+                                                    <i class="glyphicon glyphicon-camera"></i>
+                                                    Take Photo
+                                                </button>
+                                                <span ng-hide="ab.ab_image_01" ><br><br></span>
                                                 <div ng-show="ab.ab_image_01" style="padding-left:8px;" >
+                                                    <span ng-show="ab.ab_image_01" ><br><br></span>
                                                     <a href="" class="btn btn-xs btn-danger" ng-click="delete()" >
                                                         <i class="glyphicon glyphicon-remove-circle"></i> Delete
                                                     </a>
@@ -76,7 +86,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><label for="ab.ab_copy{{ab.ab_id}}">Block Description</label></td>
+                                <td><label for="ab.ab_copy{{ab.ab_id}}">Item Description</label></td>
                                 <td><textarea type="text" id="ab.ab_copy{{ab.ab_id}}" ng-model="ab.ab_copy"  style="width:100%;height:200px;" ></textarea></td>
                             </tr>
                         </table>
@@ -84,7 +94,7 @@
                 </div>
                 <br>
                 <a href="" class="btn btn-sm btn-primary add-block" ng-click="add_block()" >
-                    <i class="glyphicon glyphicon-plus-sign"></i> Add Block
+                    <i class="glyphicon glyphicon-plus-sign"></i> Add Item
                 </a>
                 <!--- <pre>post: {{post}}</pre> --->
             </td>     
