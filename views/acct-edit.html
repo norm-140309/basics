@@ -53,9 +53,12 @@
                                                 <input type="text" ng-model="ab.ab_image_01" disabled class="pull-left" style="margin-right:20px;" >
                                             </div>
                                             <div class="col-md-5">
-                                                <input type="file" ng-file-select="onFileSelect($files)" class="pull-left" ng-hide="ab.ab_image_01" accept="image/*" capture="camera">
+                                                <input type="file" ng-file-select="onFileSelect($files)" class="pull-left " ng-hide="ab.ab_image_01" accept="image/*" capture="camera" >
                                                 <!--  -->
-                                                <button ng-click="doGetImage($index)" class="pull-left" ng-hide="ab.ab_image_01" style="margin-top:5px;">Take Photo</button>
+                                                <button ng-click="doGetImage($index)" class="pull-left btn btn-xs btn-info" ng-hide="ab.ab_image_01" style="margin-top:5px;">
+                                                    <i class="glyphicon glyphicon-camera"></i>
+                                                    Take Photo
+                                                </button>
                                                 <div ng-show="ab.ab_image_01" style="padding-left:8px;" >
                                                     <a href="" class="btn btn-xs btn-danger" ng-click="delete()" >
                                                         <i class="glyphicon glyphicon-remove-circle"></i> Delete
