@@ -30,7 +30,7 @@ h3 { font-size:16px;font-weight:bold; }
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-#CameraId .progress { margin-top: 10px;display:block; }
+#CameraId .progress { margin-top: 10px;display:none; }
 .date{
     float: left;
     height: 52px;
