@@ -105,13 +105,27 @@ updaterApp.controller('AcctNewController', ['$scope', '$http', '$routeParams', '
             $scope.acct.blocks[$scope.block_num].ab_image_01 = pic;
             //alert('doRootToScope() received: |' + pic + '|');
         };
-        $scope.doLoadImage = function() {
-            var txt_url = 'http://basics.cinchcms.net/api/last_image.txt';
-            $http.get(txt_url).success(function(data, status) {
-                //$scope.camera_data = data;
-                //$scope.camera_pic = data.filename;
-                //$scope.camera_thumb = data.thumbname;
-                $scope.acct.blocks[$scope.block_num].ab_image_01 = data.filename;
+        $scope.doLoadImage = function(r) {
+            var resp = $.parseJSON(r.response);
+            var camera_pic = resp.filename;
+            var camera_thumb = resp.thumbname;
+            var data = { filename: camera_pic, thumbname: camera_thumb };
+            var save_url = 'http://basics.cinchcms.net/api/write.php';
+            $http.post(save_url, data).success(function(data, status, headers){
+                if(status == "200"){
+                    //alert("Saved last_image.txt successfully.");
+                    var wait4write;
+                    wait4write = setTimeout(function(){
+                            var txt_url = 'http://basics.cinchcms.net/api/last_image.txt';
+                            $http.get(txt_url).success(function(data, status) {
+                                $scope.acct.blocks[$scope.block_num].ab_image_01 = data.filename;
+                                //console.log($scope.camera_data);
+                            });
+                            clearTimeout(wait4write);
+                        }, 
+                        1000  //Wait 1 second prior to reading in the text values.
+                    );
+                }
             });
         };
     }]);
@@ -202,13 +216,27 @@ updaterApp.controller('AcctEditController', ['$scope', '$http', '$routeParams', 
             $scope.acct.blocks[$scope.block_num].ab_image_01 = pic;
             //alert('doRootToScope() received: |' + pic + '|');
         };
-        $scope.doLoadImage = function() {
-            var txt_url = 'http://basics.cinchcms.net/api/last_image.txt';
-            $http.get(txt_url).success(function(data, status) {
-                //$scope.camera_data = data;
-                //$scope.camera_pic = data.filename;
-                //$scope.camera_thumb = data.thumbname;
-                $scope.acct.blocks[$scope.block_num].ab_image_01 = data.filename;
+        $scope.doLoadImage = function(r) {
+            var resp = $.parseJSON(r.response);
+            var camera_pic = resp.filename;
+            var camera_thumb = resp.thumbname;
+            var data = { filename: camera_pic, thumbname: camera_thumb };
+            var save_url = 'http://basics.cinchcms.net/api/write.php';
+            $http.post(save_url, data).success(function(data, status, headers){
+                if(status == "200"){
+                    //alert("Saved last_image.txt successfully.");
+                    var wait4write;
+                    wait4write = setTimeout(function(){
+                            var txt_url = 'http://basics.cinchcms.net/api/last_image.txt';
+                            $http.get(txt_url).success(function(data, status) {
+                                $scope.acct.blocks[$scope.block_num].ab_image_01 = data.filename;
+                                //console.log($scope.camera_data);
+                            });
+                            clearTimeout(wait4write);
+                        }, 
+                        1000  //Wait 1 second prior to reading in the text values.
+                    );
+                }
             });
         };
     }]);

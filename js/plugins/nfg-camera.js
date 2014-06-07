@@ -33,11 +33,11 @@ function uploadPhoto(imageURI) {
 function win(r) {
     var resp = $.parseJSON(r.response);
     var camera_pic = resp.filename;
-    pushPicToScope();
+    pushPicToScope(r);
 }
 function fail(error) {
     alert("An error has occurred: Code = " + error.code);
 }
-function pushPicToScope(){
-    angular.element(document.getElementById('CameraId')).scope().doLoadImage();
+function pushPicToScope(r){
+    angular.element(document.getElementById('CameraId')).scope().doLoadImage(r);
 }
