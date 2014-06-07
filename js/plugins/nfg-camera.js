@@ -42,8 +42,8 @@ function win(r) {
     var resp = $.parseJSON(r.response);
     var camera_pic = resp.filename;
     pushPicToScope(r);
-    $('#camera_status').text("Image upload complete.");
-    $('#CameraId').find('.progress').fadeOut("slow");
+    $('.camera_status').text("Image upload complete.");
+    $('.progress').fadeOut("slow");
 }
 function fail(error) {
     alert("An error has occurred: Code = " + error.code);
