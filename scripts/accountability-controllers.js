@@ -318,7 +318,7 @@ updaterApp.controller('AcctLogoutController', ['$scope', '$http', '$routeParams'
         });
     }]);
 
-//Accountability Login Page
+//Accountability Signup Page
 updaterApp.controller('AcctSignupController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window) {
         //console.log('uuid: '+$window.sessionStorage.token);
         var data = {
@@ -331,16 +331,21 @@ updaterApp.controller('AcctSignupController', ['$scope', '$http', '$routeParams'
         };
         $scope.acct = data;
         $scope.api_url = 'http://basics.cinchcms.net/api/accountability/signup/';
-        $scope.signup = function(data) {
-            $http.post($scope.api_url, data).success(function(data, status, headers) {
-                $window.sessionStorage.token = data['uuid'];
-                $window.sessionStorage.username = data['username'];
-                $window.sessionStorage.loggedin = true;
-                $('#login-alert').hide();
-                $('#login-link').hide();
-                $('#logout-link').show();
-                $location.path('/acct');
-            });
+        $scope.signup = function(data) { 
+                $http.post($scope.api_url, data).success(function(data, status, headers) {
+                    if(data['result'] == true){
+                        $window.sessionStorage.token = data['uuid'];
+                        $window.sessionStorage.username = data['username'];
+                        $window.sessionStorage.loggedin = true;
+                        $('#login-alert').hide();
+                        $('#login-link').hide();
+                        $('#logout-link').show();
+                        $location.path('/acct');
+                    }else{
+                        console.log(data);
+                        $scope.wrongCredentials = true;
+                    }
+                }); 
         };
     }]);
 

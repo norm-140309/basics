@@ -21,7 +21,8 @@
                     <i class="glyphicon glyphicon-remove-circle"></i> Delete</a> 
                 </div>
                 <h2>{{acct.a_name}}</h2>
-                <div ng-bind-html="acct.a_summary" class="list-summary"></div>
+                <div class="clearfix"></div>
+                <acct-anim-thumb uuid="acct.a_id"></acct-anim-thumb>
                 <a href="#/acct/detail/{{acct.a_slug}}" class="btn btn-sm btn-success read-more" >
                     Read More
                 </a>
