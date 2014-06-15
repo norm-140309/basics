@@ -1,6 +1,6 @@
 <div  class="table-container">
-    <h2>Latest News</h2>
-
+    <h2 ng-show="posts[0].s_name">{{posts[0].s_name}}</h2>
+    <h2 ng-hide="posts[0].s_name">Latest News</h2>
     <table class="table table-striped"> 
         <tr ng-repeat="post in posts | orderBy:'p_date_displayed':false"> <!--  | limitTo:20 -->
             <td>
