@@ -342,7 +342,7 @@ updaterApp.controller('AcctSignupController', ['$scope', '$http', '$routeParams'
                         $('#logout-link').show();
                         $location.path('/acct');
                     }else{
-                        console.log(data);
+                        //console.log(data);
                         $scope.wrongCredentials = true;
                     }
                 }); 
