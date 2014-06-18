@@ -109,22 +109,22 @@ updaterApp.controller('AcctNewController', ['$scope', '$http', '$routeParams', '
             var resp = $.parseJSON(r.response);
             var camera_pic = resp.filename;
             var camera_thumb = resp.thumbname;
-            var data = { filename: camera_pic, thumbname: camera_thumb };
+            var data = {filename: camera_pic, thumbname: camera_thumb};
             var save_url = 'http://basics.cinchcms.net/api/write.php';
-            $http.post(save_url, data).success(function(data, status, headers){
-                if(status == "200"){
+            $http.post(save_url, data).success(function(data, status, headers) {
+                if (status == "200") {
                     //alert("Saved last_image.txt successfully.");
                     var wait4write;
-                    wait4write = setTimeout(function(){
-                            var txt_url = 'http://basics.cinchcms.net/api/last_image.txt';
-                            $http.get(txt_url).success(function(data, status) {
-                                $scope.acct.blocks[$scope.block_num].ab_image_01 = data.filename;
-                                //console.log($scope.camera_data);
-                            });
-                            clearTimeout(wait4write);
-                        }, 
-                        1000  //Wait 1 second prior to reading in the text values.
-                    );
+                    wait4write = setTimeout(function() {
+                        var txt_url = 'http://basics.cinchcms.net/api/last_image.txt';
+                        $http.get(txt_url).success(function(data, status) {
+                            $scope.acct.blocks[$scope.block_num].ab_image_01 = data.filename;
+                            //console.log($scope.camera_data);
+                        });
+                        clearTimeout(wait4write);
+                    },
+                            1000  //Wait 1 second prior to reading in the text values.
+                            );
                 }
             });
         };
@@ -206,7 +206,7 @@ updaterApp.controller('AcctEditController', ['$scope', '$http', '$routeParams', 
         };
         $scope.remove_block = function(index) {
             $scope.acct.blocks.splice(index, 1);
-        };        
+        };
         $scope.doGetImage = function(num) {
             $scope.block_num = num;
             getImage();
@@ -220,22 +220,22 @@ updaterApp.controller('AcctEditController', ['$scope', '$http', '$routeParams', 
             var resp = $.parseJSON(r.response);
             var camera_pic = resp.filename;
             var camera_thumb = resp.thumbname;
-            var data = { filename: camera_pic, thumbname: camera_thumb };
+            var data = {filename: camera_pic, thumbname: camera_thumb};
             var save_url = 'http://basics.cinchcms.net/api/write.php';
-            $http.post(save_url, data).success(function(data, status, headers){
-                if(status == "200"){
+            $http.post(save_url, data).success(function(data, status, headers) {
+                if (status == "200") {
                     //alert("Saved last_image.txt successfully.");
                     var wait4write;
-                    wait4write = setTimeout(function(){
-                            var txt_url = 'http://basics.cinchcms.net/api/last_image.txt';
-                            $http.get(txt_url).success(function(data, status) {
-                                $scope.acct.blocks[$scope.block_num].ab_image_01 = data.filename;
-                                //console.log($scope.camera_data);
-                            });
-                            clearTimeout(wait4write);
-                        }, 
-                        1000  //Wait 1 second prior to reading in the text values.
-                    );
+                    wait4write = setTimeout(function() {
+                        var txt_url = 'http://basics.cinchcms.net/api/last_image.txt';
+                        $http.get(txt_url).success(function(data, status) {
+                            $scope.acct.blocks[$scope.block_num].ab_image_01 = data.filename;
+                            //console.log($scope.camera_data);
+                        });
+                        clearTimeout(wait4write);
+                    },
+                            1000  //Wait 1 second prior to reading in the text values.
+                            );
                 }
             });
         };
@@ -269,14 +269,16 @@ updaterApp.controller('AcctDeleteController', ['$scope', '$http', '$routeParams'
     }]);
 
 //Accountability Login Page
-updaterApp.controller('AcctLoginController', ['$scope', '$http', '$routeParams', '$location', '$window', function($scope, $http, $routeParams, $location, $window) {
+updaterApp.controller('AcctLoginController', ['$scope', '$http', '$routeParams', '$location', '$window', '$localStorage', function($scope, $http, $routeParams, $location, $window, $localStorage) {
         //console.log('uuid: '+$window.sessionStorage.token);
+        $scope.acct = { email:"", password:"" };
+        $scope.acct.email = $localStorage.email || "";
         $scope.api_url = 'http://basics.cinchcms.net/api/accountability/login/';
         $scope.login = function(data) {
+            $localStorage.email = data.email;
             $http.post($scope.api_url, data).success(function(data, status, headers) {
                 /* console.log('in module login result: '+data); */
-
-                if (data != 'error') {
+                if (data != '"error"') {
                     $scope.wrongCredentials = false;
                     $window.sessionStorage.token = data['m_uuid'];
                     $window.sessionStorage.username = data['m_username'];
@@ -331,21 +333,21 @@ updaterApp.controller('AcctSignupController', ['$scope', '$http', '$routeParams'
         };
         $scope.acct = data;
         $scope.api_url = 'http://basics.cinchcms.net/api/accountability/signup/';
-        $scope.signup = function(data) { 
-                $http.post($scope.api_url, data).success(function(data, status, headers) {
-                    if(data['result'] == true){
-                        $window.sessionStorage.token = data['uuid'];
-                        $window.sessionStorage.username = data['username'];
-                        $window.sessionStorage.loggedin = true;
-                        $('#login-alert').hide();
-                        $('#login-link').hide();
-                        $('#logout-link').show();
-                        $location.path('/acct');
-                    }else{
-                        //console.log(data);
-                        $scope.wrongCredentials = true;
-                    }
-                }); 
+        $scope.signup = function(data) {
+            $http.post($scope.api_url, data).success(function(data, status, headers) {
+                if (data['result'] == true) {
+                    $window.sessionStorage.token = data['uuid'];
+                    $window.sessionStorage.username = data['username'];
+                    $window.sessionStorage.loggedin = true;
+                    $('#login-alert').hide();
+                    $('#login-link').hide();
+                    $('#logout-link').show();
+                    $location.path('/acct');
+                } else {
+                    //console.log(data);
+                    $scope.wrongCredentials = true;
+                }
+            });
         };
     }]);
 

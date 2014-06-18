@@ -2,7 +2,8 @@
 var updaterApp = angular.module('updaterApp', [
     'ngRoute',
     'angularFileUpload',
-    'ngSanitize'
+    'ngSanitize',
+    'ngStorage'
 ]);
 updaterApp.config(function($routeProvider) {
     $routeProvider
