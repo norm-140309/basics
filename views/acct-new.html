@@ -63,7 +63,7 @@
                                                 <a href="return false;" class="btn btn-xs btn-default" ng-hide="ab.ab_image_01" >
                                                     <i class="glyphicon glyphicon-file"></i> Browse...
                                                 </a>
-                                                <input type="file" ng-file-select="onFileSelect($files)" class="pull-left file-object" accept="image/*" capture="camera" ng-hide="ab.ab_image_01" >
+                                                <input type="file" ng-file-select="onFileSelect($files)" class="pull-left file-object"  ng-hide="ab.ab_image_01" ><!-- accept="image/*" capture="camera" -->
                                                 <span ng-hide="ab.ab_image_01" ><br></span>
                                                 <button ng-click="doGetImage($index)" class="pull-left btn btn-xs btn-info camera_btn" ng-hide="ab.ab_image_01" >
                                                     <i class="glyphicon glyphicon-camera"></i>
